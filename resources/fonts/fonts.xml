@@ -1,0 +1,5 @@
+<fonts>
+    <font id="BigFont" filename="TrivialMono280Heavy.fnt" antialias="true" filter="0123456789"/>
+    <font id="MediumFont" filename="TrivialHalf218Heavy.fnt" antialias="true" filter="0123456789"/>
+    <font id="IconsFont" filename="icons-25px.fnt" antialias="true"/>
+</fonts>

@@ -5,8 +5,13 @@ import Toybox.WatchUi;
 
 class CircularView extends WatchUi.WatchFace {
 
+    private var _dataProvider;
+    private var _fonts;    
+
     function initialize() {
         WatchFace.initialize();
+
+        _dataProvider = new DataProvider();
     }
 
     // Load your resources here
@@ -18,16 +23,11 @@ class CircularView extends WatchUi.WatchFace {
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() as Void {
+        _fonts = new Fonts();
     }
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
-        // Get and show the current time
-        var clockTime = System.getClockTime();
-        var timeString = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
-        var view = View.findDrawableById("TimeLabel") as Text;
-        view.setText(timeString);
-
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
@@ -36,6 +36,7 @@ class CircularView extends WatchUi.WatchFace {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() as Void {
+        _fonts = null;
     }
 
     // The user has just looked at their watch. Timers and animations may be started here.
