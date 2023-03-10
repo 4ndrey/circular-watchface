@@ -52,8 +52,12 @@ class WeatherComplication extends WatchUi.Drawable {
         dc.fillCircle(dx, dy, penWidth / 2 + 1);
 
         // Draw current temperature
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE); 
+        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT); 
         dc.drawText(x, y - 1, Graphics.FONT_TINY, weatherData.currentTemperature.toString(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+
+        // Draw min and max temperature
+        dc.drawText(x - arcRadius + 5, y + arcRadius + 2, Graphics.FONT_XTINY, weatherData.minTemperature.toString(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        dc.drawText(x + arcRadius - 5, y + arcRadius + 2, Graphics.FONT_XTINY, weatherData.maxTemperature.toString(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
 }
