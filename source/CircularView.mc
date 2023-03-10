@@ -6,28 +6,63 @@ import Toybox.WatchUi;
 class CircularView extends WatchUi.WatchFace {
 
     private var _dataProvider;
-    private var _fonts;    
+    private var _fonts;
+    private var _layout;
 
     function initialize() {
         WatchFace.initialize();
 
         _dataProvider = new DataProvider();
+        _layout = new Layout();
     }
 
     // Load your resources here
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.WatchFace(dc));
+
+        if (_layout.needsUpdate) {
+            Fonts.load();
+            _layout.update(
+                dc,
+                Size.of(dc, "00", Fonts.bigFont),
+                Size.of(dc, "00", Fonts.mediumFont),
+                Size.of(dc, "Xxx 00", Fonts.smallFont)
+            );
+        }
     }
 
     // Called when this View is brought to the foreground. Restore
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() as Void {
-        _fonts = new Fonts();
+        Fonts.load();
     }
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
+        var activityRing = View.findDrawableById("ActivityRing") as ActivityRing;
+        activityRing.setSegments(_dataProvider.getSegments());
+
+        var hours = View.findDrawableById("Hours") as Label;
+        hours.text = _dataProvider.getHour();
+        hours.font = Fonts.bigFont;
+        hours.origin = _layout.hoursPosition;
+
+        var minutes = View.findDrawableById("Minutes") as Label;
+        minutes.text = _dataProvider.getMinutes();
+        minutes.font = Fonts.mediumFont;
+        minutes.origin = _layout.minutesPosition;
+
+        var date = View.findDrawableById("Date") as Label;
+        date.color = Graphics.COLOR_DK_GRAY;
+        date.text = _dataProvider.getDate();
+        date.font = Fonts.smallFont;
+        date.origin = _layout.datePosition;
+
+        var weatherView = View.findDrawableById("Weather") as WeatherComplication;
+        weatherView.origin = _layout.weatherPosition;
+        weatherView.weatherData = _dataProvider.getWeatherData();        
+        
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
@@ -36,7 +71,7 @@ class CircularView extends WatchUi.WatchFace {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() as Void {
-        _fonts = null;
+        Fonts.unload();
     }
 
     // The user has just looked at their watch. Timers and animations may be started here.

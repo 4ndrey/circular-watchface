@@ -39,7 +39,7 @@ class DataProvider {
         return hours.format("%02d").toString();
     }
 
-    function getMinute() {
+    function getMinutes() {
         var clockTime = System.getClockTime();
         var minutes = clockTime.min;
         return minutes.format("%02d").toString();

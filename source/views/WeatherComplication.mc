@@ -8,7 +8,10 @@ class WeatherComplication extends WatchUi.Drawable {
 
     private var radius;
     private static const toPi = Math.PI / 180;
+    private static const penWidth = 4;
+    private static const arcRadius = 24;
 
+    var origin;
     var weatherData;
 
     function initialize(params) {
@@ -20,12 +23,10 @@ class WeatherComplication extends WatchUi.Drawable {
         var weatherInfo = weatherData as WeatherData;
         if (weatherInfo == null) { return; }
 
-        var x = radius;
-        var y = radius * 1.51; //182.0;
+        var x = origin.x;
+        var y = origin.y + arcRadius / 2;
 
         // Draw arc
-        var penWidth = 4;
-        var arcRadius = 24;
         var start = 180 + 40;
         var end = -40;
         dc.setPenWidth(penWidth);

@@ -1,13 +1,25 @@
 import Toybox.Graphics;
+import Toybox.WatchUi;
 
 class Fonts {
-    var bigFont;
-    var mediumFont;
-    var iconsFont;
+    static var bigFont;
+    static var mediumFont;
+    static var smallFont;
+    static var iconsFont;
 
-    function initialize() {
-        bigFont = WatchUi.loadResource( Rez.Fonts.BigFont );
-        mediumFont = WatchUi.loadResource( Rez.Fonts.MediumFont );
-        iconsFont = WatchUi.loadResource( Rez.Fonts.IconsFont );
+    static function load() {
+        if (bigFont == null) {
+            bigFont = WatchUi.loadResource( Rez.Fonts.BigFont );
+            mediumFont = WatchUi.loadResource( Rez.Fonts.MediumFont );
+            smallFont = Graphics.FONT_SYSTEM_TINY;
+            iconsFont = WatchUi.loadResource( Rez.Fonts.IconsFont );
+        }
+    }
+
+    static function unload() {
+        bigFont = null;
+        mediumFont = null;
+        smallFont = null;
+        iconsFont = null;
     }
 }

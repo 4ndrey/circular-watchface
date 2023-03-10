@@ -6,7 +6,7 @@ import Toybox.Lang;
 
 class ActivityRing extends WatchUi.Drawable {
 
-    private static const penWidth = 20;
+    static const penWidth = 20;
     private static const toPi = Math.PI / 180;
 
     private var radius;
