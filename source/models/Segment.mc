@@ -9,7 +9,7 @@ class Segment {
     (:debug)
     function initialize(_activityType, _value) {
         activityType = _activityType;
-        value = 0.35;//Math.rand() % 100 / 100.0;
+        value = 0.85;//Math.rand() % 100 / 100.0;
         isValid = value > 0.1;
     }
 

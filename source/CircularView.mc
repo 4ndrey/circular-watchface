@@ -8,12 +8,14 @@ class CircularView extends WatchUi.WatchFace {
     private var _dataProvider;
     private var _fonts;
     private var _layout;
+    private var _time;
 
     function initialize() {
         WatchFace.initialize();
 
         _dataProvider = new DataProvider();
         _layout = new Layout();
+        _time = "";
     }
 
     // Load your resources here
@@ -40,21 +42,29 @@ class CircularView extends WatchUi.WatchFace {
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
+        var hours = _dataProvider.getHour();
+        var minutes = _dataProvider.getMinutes();
+        var time = hours + minutes;
+        if (_time.equals(time)) {
+            return;
+        } else {
+            _time = time;
+        }
+
         var activityRing = View.findDrawableById("ActivityRing") as ActivityRing;
         activityRing.setSegments(_dataProvider.getSegments());
 
-        var hours = View.findDrawableById("Hours") as Label;
-        hours.text = _dataProvider.getHour();
-        hours.font = Fonts.bigFont;
-        hours.origin = _layout.hoursPosition;
+        var hoursView = View.findDrawableById("Hours") as Label;
+        hoursView.text = hours;
+        hoursView.font = Fonts.bigFont;
+        hoursView.origin = _layout.hoursPosition;
 
-        var minutes = View.findDrawableById("Minutes") as Label;
-        minutes.text = _dataProvider.getMinutes();
-        minutes.font = Fonts.mediumFont;
-        minutes.origin = _layout.minutesPosition;
+        var minutesView = View.findDrawableById("Minutes") as Label;
+        minutesView.text = minutes;
+        minutesView.font = Fonts.mediumFont;
+        minutesView.origin = _layout.minutesPosition;
 
         var date = View.findDrawableById("Date") as Label;
-        date.color = Graphics.COLOR_DK_GRAY;
         date.text = _dataProvider.getDate();
         date.font = Fonts.smallFont;
         date.origin = _layout.datePosition;
