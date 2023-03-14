@@ -25,6 +25,9 @@ class WeatherData {
     }
 
     function weatherType() {
+        if (upcomingWeatherCondition) {
+            return null;
+        }
         switch (upcomingWeatherCondition) {
             case Weather.CONDITION_CLEAR:
                 return WEATHER_TYPE_CLEAR;

@@ -54,6 +54,7 @@ class DataProvider {
         return System.getDeviceSettings().notificationCount > 0;
     }
 
+    (:release)
     function getWeatherData() {
         var weatherData = new WeatherData();        
         var weather = Weather.getCurrentConditions();
@@ -68,6 +69,16 @@ class DataProvider {
                 weatherData.upcomingWeatherCondition = forecasts[1].condition;
             }
         }
+        return weatherData.isValid() ? weatherData : null;
+    }
+
+    (:debug)
+    function getWeatherData() {
+        var weatherData = new WeatherData();        
+        weatherData.currentTemperature = 10;
+        weatherData.minTemperature = -2;
+        weatherData.maxTemperature = 18;
+        weatherData.upcomingWeatherCondition = Weather.CONDITION_CLEAR;
         return weatherData.isValid() ? weatherData : null;
     }
 
