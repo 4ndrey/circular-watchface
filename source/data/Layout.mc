@@ -1,7 +1,7 @@
 import Toybox.Graphics;
 
 class Layout {
-    static private const timePadding = 9;
+    static private const timePadding = 8;
 
     var hoursPosition;
     var minutesPosition;

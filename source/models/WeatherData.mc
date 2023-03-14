@@ -24,7 +24,7 @@ class WeatherData {
         return ratio;
     }
 
-    hidden function mapToWeatherType() {
+    function weatherType() {
         switch (upcomingWeatherCondition) {
             case Weather.CONDITION_CLEAR:
                 return WEATHER_TYPE_CLEAR;

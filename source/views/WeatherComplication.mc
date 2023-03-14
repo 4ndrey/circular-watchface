@@ -54,16 +54,23 @@ class WeatherComplication extends WatchUi.Drawable {
         // Draw point on arc
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_WHITE);
         dc.fillCircle(value, y - 1, penWidth);
-        dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
+        var color = Graphics.COLOR_BLACK;
+        var weatherType = weatherData.weatherType();
+        if (weatherType == WEATHER_TYPE_SHOWER_RAIN ||
+            weatherType == WEATHER_TYPE_RAIN ||
+            weatherType == WEATHER_TYPE_THUNDER) {
+            color = Graphics.COLOR_BLUE;
+        }
+        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
         dc.fillCircle(value, y - 1, penWidth / 2 + 1);
 
         // Draw current temperature
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT); 
-        dc.drawText(x, y + 16, Graphics.FONT_TINY, weatherData.currentTemperature.toString(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        dc.drawText(x, y + 18, Graphics.FONT_TINY, weatherData.currentTemperature.toString(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 
         // Draw min and max temperature
         dc.drawText(start.x - 15, y - 1, Graphics.FONT_XTINY, weatherData.minTemperature.toString(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-        dc.drawText(end.x + 17, y - 1, Graphics.FONT_XTINY, weatherData.maxTemperature.toString(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        dc.drawText(end.x + 18, y - 1, Graphics.FONT_XTINY, weatherData.maxTemperature.toString(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
 }
