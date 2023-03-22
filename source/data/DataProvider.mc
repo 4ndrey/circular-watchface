@@ -54,7 +54,6 @@ class DataProvider {
         return System.getDeviceSettings().notificationCount > 0;
     }
 
-    (:release)
     function getWeatherData() {
         var weatherData = new WeatherData();        
         var weather = Weather.getCurrentConditions();
@@ -63,24 +62,45 @@ class DataProvider {
             weatherData.minTemperature = weather.lowTemperature;
             weatherData.maxTemperature = weather.highTemperature;
             weatherData.upcomingWeatherCondition = weather.condition;
-            // Get weather condition for the next hour
+
             var forecasts = Weather.getHourlyForecast();
             if (forecasts != null && forecasts.size() > 0) {
-                weatherData.upcomingWeatherCondition = forecasts[1].condition;
+                var max = forecasts.size() > 10 ? 10 : forecasts.size();
+                var dt = (weather.highTemperature - weather.lowTemperature) / 4;
+                var color;
+                for (var i = 0; i < max; i++) {
+                    if (forecasts[i].precipitationChance > 50) {
+                        color = Graphics.COLOR_DK_BLUE;
+                    } else {
+                        var t = forecasts[i].temperature - weather.lowTemperature;
+                        if (t <= dt) {
+                            color = Graphics.COLOR_BLUE;
+                        } else if (t <= 2 * dt) {
+                            color = Graphics.COLOR_YELLOW;
+                        } else if (t <= 3 * dt) {
+                            color = Graphics.COLOR_ORANGE;
+                        } else {
+                            color = Graphics.COLOR_RED;
+                        }
+                    }
+
+                    var forecast = new Forecast(color, forecasts[i].forecastTime);
+                    weatherData.forecasts.add(forecast);
+                }
             }
         }
         return weatherData.isValid() ? weatherData : null;
     }
 
-    (:debug)
-    function getWeatherData() {
-        var weatherData = new WeatherData();        
-        weatherData.currentTemperature = 10;
-        weatherData.minTemperature = -2;
-        weatherData.maxTemperature = 18;
-        weatherData.upcomingWeatherCondition = Weather.CONDITION_CLEAR;
-        return weatherData.isValid() ? weatherData : null;
-    }
+    // (:debug)
+    // function getWeatherData() {
+    //     var weatherData = new WeatherData();        
+    //     weatherData.currentTemperature = 10;
+    //     weatherData.minTemperature = -2;
+    //     weatherData.maxTemperature = 18;
+    //     weatherData.upcomingWeatherCondition = Weather.CONDITION_CLEAR;
+    //     return weatherData.isValid() ? weatherData : null;
+    // }
 
     hidden function normalize(current, goal) {
         if (current == null || goal == null || goal == 0) { return 0; }

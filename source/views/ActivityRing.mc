@@ -52,20 +52,8 @@ class ActivityRing extends WatchUi.Drawable {
         for (var i = 10; i < (mid - start - 5); i = i + 9) {
             var mx = radius - (radius - 10) * Math.sin((start + i - 90) * toPi);
             var my = radius - (radius - 10) * Math.cos((start + i - 90) * toPi);
-            dc.fillCircle(mx, my, 3);
+            dc.fillCircle(mx, my, 2);
         }
-
-        // Draw gap
-        // var x1 = radius + Math.cos(startAngle) * (radius - penWidth / 2);
-        // var y1 = radius - Math.sin(startAngle) * (radius - penWidth / 2);
-
-        // dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
-        // dc.fillCircle(x1, y1, penWidth / 2 + 3);
-        // dc.setColor(segment.inactiveColor(), Graphics.COLOR_BLACK);
-
-        // Add rounding to arc
-        // dc.fillCircle(x1, y1, penWidth / 2);
-        // dc.drawArc(radius, radius, radius - penWidth / 2, Graphics.ARC_COUNTER_CLOCKWISE, start + 5 * toPi, mid);
 
         // Draw active segment arc
         dc.setColor(segment.color(), Graphics.COLOR_BLACK);

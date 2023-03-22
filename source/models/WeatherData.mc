@@ -2,7 +2,8 @@ class WeatherData {
     var minTemperature;
     var maxTemperature;
     var currentTemperature;
-    var upcomingWeatherCondition;
+    var forecasts = [];
+    var upcomingWeatherCondition; // deprecated
 
     function isValid() {
         return minTemperature != null &&
@@ -25,7 +26,7 @@ class WeatherData {
     }
 
     function weatherType() {
-        if (upcomingWeatherCondition) {
+        if (upcomingWeatherCondition == null) {
             return null;
         }
         switch (upcomingWeatherCondition) {
@@ -123,5 +124,14 @@ class WeatherData {
                 return WEATHER_TYPE_FEW_CLOUDS;
         }
     }
-    
+}
+
+class Forecast {
+    var time;
+    var color;
+
+    function initialize(_color, _time) {
+        time = _time;
+        color = _color;
+    }
 }
