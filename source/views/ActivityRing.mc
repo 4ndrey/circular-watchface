@@ -6,7 +6,7 @@ import Toybox.Lang;
 
 class ActivityRing extends WatchUi.Drawable {
 
-    static const penWidth = 20;
+    private var penWidth = 20;
     private static const toPi = Math.PI / 180;
 
     private var radius;
@@ -16,6 +16,7 @@ class ActivityRing extends WatchUi.Drawable {
     function initialize(params) {
         Drawable.initialize(params);
         radius = System.getDeviceSettings().screenHeight / 2;
+        penWidth = System.getDeviceSettings().screenHeight / 12;
     }
 
     function setSegments(_segments as Array<Segment>) {

@@ -27,7 +27,7 @@ class Segment {
             case ACTIVITY_TYPE_FLOORS:
                 return Graphics.COLOR_DK_GREEN; //0x388e3c;
             case ACTIVITY_TYPE_ACTIVE_MINUTES:
-                return Graphics.COLOR_DK_GREEN;//0x388e3c;
+                return Graphics.COLOR_ORANGE; //0x388e3c;
             case ACTIVITY_TYPE_ENERGY:
                 return Graphics.COLOR_PURPLE;
             default:

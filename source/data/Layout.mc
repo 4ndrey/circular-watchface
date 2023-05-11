@@ -26,7 +26,7 @@ class Layout {
 
         datePosition = new Point(
             (screenSize.width - dateSize.width) / 2,
-            (hoursPosition.y - dateSize.height + ActivityRing.penWidth - dy) / 2
+            (hoursPosition.y - dateSize.height + screenSize.width / 12 - dy) / 2
         );
 
         weatherPosition = new Point(

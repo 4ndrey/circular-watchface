@@ -45,6 +45,12 @@ class DataProvider {
         return minutes.format("%02d").toString();
     }
 
+    function getSeconds() {
+        var clockTime = System.getClockTime();
+        var seconds = clockTime.sec;
+        return seconds;
+    }    
+
     function getDate() {
         var today = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
         return today.day_of_week + " " + today.day.toString();
@@ -69,18 +75,16 @@ class DataProvider {
                 var dt = (weather.highTemperature - weather.lowTemperature) / 4;
                 var color;
                 for (var i = 0; i < max; i++) {
-                    if (forecasts[i].precipitationChance > 50) {
+                    if (forecasts[i].precipitationChance >= 40) {
                         color = Graphics.COLOR_DK_BLUE;
                     } else {
                         var t = forecasts[i].temperature - weather.lowTemperature;
                         if (t <= dt) {
                             color = Graphics.COLOR_BLUE;
-                        } else if (t <= 2 * dt) {
-                            color = Graphics.COLOR_YELLOW;
                         } else if (t <= 3 * dt) {
-                            color = Graphics.COLOR_ORANGE;
+                            color = Graphics.COLOR_YELLOW;
                         } else {
-                            color = Graphics.COLOR_RED;
+                            color = Graphics.COLOR_ORANGE;
                         }
                     }
 

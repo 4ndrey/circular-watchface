@@ -8,14 +8,12 @@ class CircularView extends WatchUi.WatchFace {
     private var _dataProvider;
     private var _fonts;
     private var _layout;
-    private var _time;
 
     function initialize() {
         WatchFace.initialize();
 
         _dataProvider = new DataProvider();
         _layout = new Layout();
-        _time = "";
     }
 
     // Load your resources here
@@ -44,12 +42,6 @@ class CircularView extends WatchUi.WatchFace {
     function onUpdate(dc as Dc) as Void {
         var hours = _dataProvider.getHour();
         var minutes = _dataProvider.getMinutes();
-        var time = hours + minutes;
-        if (_time.equals(time)) {
-            return;
-        } else {
-            _time = time;
-        }
 
         var activityRing = View.findDrawableById("ActivityRing") as ActivityRing;
         activityRing.setSegments(_dataProvider.getSegments());

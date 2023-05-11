@@ -52,7 +52,7 @@ class WeatherComplication extends WatchUi.Drawable {
         dc.fillCircle(start.x - 3, start.y - 1, penWidth / 2);
 
         // Draw current temperature
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE); 
+        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT); 
         dc.drawText(x, y + 19, Graphics.FONT_TINY, weatherData.currentTemperature.toString() + unit, 
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );        
