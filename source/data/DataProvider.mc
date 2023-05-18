@@ -36,7 +36,7 @@ class DataProvider {
     function getHour() {
         var clockTime = System.getClockTime();
         var hours = clockTime.hour;
-        return hours.format("%02d").toString();
+        return hours;
     }
 
     function getMinutes() {
@@ -95,16 +95,6 @@ class DataProvider {
         }
         return weatherData.isValid() ? weatherData : null;
     }
-
-    // (:debug)
-    // function getWeatherData() {
-    //     var weatherData = new WeatherData();        
-    //     weatherData.currentTemperature = 10;
-    //     weatherData.minTemperature = -2;
-    //     weatherData.maxTemperature = 18;
-    //     weatherData.upcomingWeatherCondition = Weather.CONDITION_CLEAR;
-    //     return weatherData.isValid() ? weatherData : null;
-    // }
 
     hidden function normalize(current, goal) {
         if (current == null || goal == null || goal == 0) { return 0; }

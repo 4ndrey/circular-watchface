@@ -39,7 +39,7 @@ class WeatherComplication extends WatchUi.Drawable {
         dc.setPenWidth(penWidth + 1);
         for (var i = 0; i < forecasts.size(); i++) {
             var forecast = forecasts[i];
-            dc.setColor(forecast.color, Graphics.COLOR_WHITE);
+            dc.setColor(forecast.color, Colors.backgroundColor);
             dc.drawLine(
                 start.x + step * i, start.y - 1,
                 start.x + step * (i + 1), start.y - 1
@@ -48,17 +48,17 @@ class WeatherComplication extends WatchUi.Drawable {
 
         // Add rounding to line
         dc.fillCircle(end.x + 2, end.y - 1, penWidth / 2);        
-        dc.setColor(forecasts[0].color, Graphics.COLOR_WHITE);
+        dc.setColor(forecasts[0].color, Colors.backgroundColor);
         dc.fillCircle(start.x - 3, start.y - 1, penWidth / 2);
 
         // Draw current temperature
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT); 
+        dc.setColor(Colors.foregroundColor, Graphics.COLOR_TRANSPARENT); 
         dc.drawText(x, y + 19, Graphics.FONT_TINY, weatherData.currentTemperature.toString() + unit, 
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );        
 
         // Draw current and max temperature
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_WHITE); 
+        dc.setColor(Colors.foregroundColorAlt, Colors.backgroundColor); 
         dc.drawText(start.x - 12, y - 2, Graphics.FONT_XTINY, weatherData.minTemperature.toString(), 
             Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER
         );

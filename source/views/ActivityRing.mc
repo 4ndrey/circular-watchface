@@ -27,7 +27,7 @@ class ActivityRing extends WatchUi.Drawable {
     function draw(dc as Dc) as Void {
         // Draw background
         dc.setPenWidth(penWidth);
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
+        dc.setColor(Colors.backgroundColor, Colors.backgroundColor);
         dc.drawArc(radius, radius, radius + penWidth / 2, Graphics.ARC_CLOCKWISE, 90, -270);
 
         var tiles = segments as Array<Segment>;
@@ -46,7 +46,7 @@ class ActivityRing extends WatchUi.Drawable {
         var endAngle = end * toPi;
 
         dc.setPenWidth(penWidth + 1);
-        dc.setColor(segment.color(), Graphics.COLOR_BLACK);
+        dc.setColor(segment.color(), Colors.foregroundColor);
 
         // Draw inactive segment arc
         // dc.drawArc(radius, radius, radius - penWidth / 2, Graphics.ARC_COUNTER_CLOCKWISE, start, mid);
@@ -57,7 +57,7 @@ class ActivityRing extends WatchUi.Drawable {
         }
 
         // Draw active segment arc
-        dc.setColor(segment.color(), Graphics.COLOR_BLACK);
+        dc.setColor(segment.color(), Colors.foregroundColor);
         dc.drawArc(radius, radius, radius - penWidth / 2, Graphics.ARC_COUNTER_CLOCKWISE, mid, end);
 
         // Add rounding to arc

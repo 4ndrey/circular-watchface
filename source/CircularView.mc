@@ -40,8 +40,11 @@ class CircularView extends WatchUi.WatchFace {
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
-        var hours = _dataProvider.getHour();
+        var hoursValue = _dataProvider.getHour();
+        var hours = hoursValue.format("%02d").toString();
         var minutes = _dataProvider.getMinutes();
+
+        Colors.setDarkMode(hoursValue >= 21 || hoursValue <= 6);
 
         var activityRing = View.findDrawableById("ActivityRing") as ActivityRing;
         activityRing.setSegments(_dataProvider.getSegments());
