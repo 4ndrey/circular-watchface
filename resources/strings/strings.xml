@@ -1,3 +1,7 @@
 <strings>
     <string id="AppName">Circular</string>
+    <string id="DarkModeTitle">Dark Mode</string>
+    <string id="Auto">Auto</string>
+    <string id="On">On</string>
+    <string id="Off">Off</string>
 </strings>

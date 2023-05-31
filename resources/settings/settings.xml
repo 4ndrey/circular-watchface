@@ -1,0 +1,11 @@
+<settings>
+
+    <setting propertyKey="@Properties.DarkMode" title="@Strings.DarkModeTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.Auto</listEntry>
+            <listEntry value="1">@Strings.On</listEntry>
+            <listEntry value="2">@Strings.Off</listEntry>
+        </settingConfig>
+    </setting>
+
+</settings>

@@ -44,8 +44,15 @@ class CircularView extends WatchUi.WatchFace {
         var hours = hoursValue.format("%02d").toString();
         var minutes = _dataProvider.getMinutes();
 
-        Colors.setDarkMode(hoursValue >= 21 || hoursValue <= 6);
-
+        var darkMode = Application.getApp().getProperty("DarkMode");
+        if (darkMode == 0 /* Auto */) {
+            Colors.setDarkMode(hoursValue >= 21 || hoursValue <= 6);
+        } else if (darkMode == 1) {
+            Colors.setDarkMode(true);
+        } else {
+            Colors.setDarkMode(false);
+        }
+        
         var activityRing = View.findDrawableById("ActivityRing") as ActivityRing;
         activityRing.setSegments(_dataProvider.getSegments());
 
