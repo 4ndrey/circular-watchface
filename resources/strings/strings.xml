@@ -5,4 +5,5 @@
     <string id="Auto">Auto</string>
     <string id="On">On</string>
     <string id="Off">Off</string>
+    <string id="DateFormatTitle">Date Format (d - day of week, D - day of month, M - month), default: 'd D'</string>
 </strings>

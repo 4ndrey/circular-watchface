@@ -53,7 +53,11 @@ class DataProvider {
 
     function getDate() {
         var today = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-        return today.day_of_week + " " + today.day.toString();
+        var dateFormat = Application.getApp().getProperty("DateFormat");
+        var result = stringReplace(dateFormat, "d", today.day_of_week);
+        result = stringReplace(result, "D", today.day.toString());
+        result = stringReplace(result, "M", today.month.toString());
+        return result;
     }
 
     function hasNotifications() {

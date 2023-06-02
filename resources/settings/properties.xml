@@ -2,5 +2,6 @@
 
     <property id="AppVersion" type="string">0.2.4</property>
     <property id="DarkMode" type="number">0</property>
+    <property id="DateFormat" type="string">d D</property>
 
 </properties>

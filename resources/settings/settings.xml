@@ -12,4 +12,8 @@
         </settingConfig>
     </setting>
 
+    <setting propertyKey="@Properties.DateFormat" title="@Strings.DateFormatTitle">
+        <settingConfig type="alphaNumeric" required="true" />
+    </setting>
+
 </settings>
