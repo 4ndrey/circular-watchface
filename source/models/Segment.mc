@@ -59,7 +59,7 @@ class Segment {
             case ACTIVITY_TYPE_ACTIVE_MINUTES:
                 return "c";
             case ACTIVITY_TYPE_ENERGY:
-                return "t";
+                return "y";
             default:
                 return "?";
         }

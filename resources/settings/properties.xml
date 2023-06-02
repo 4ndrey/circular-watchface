@@ -1,5 +1,6 @@
 <properties>
 
+    <property id="AppVersion" type="string">0.2.4</property>
     <property id="DarkMode" type="number">0</property>
 
 </properties>
