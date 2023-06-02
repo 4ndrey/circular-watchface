@@ -44,7 +44,7 @@ class CircularView extends WatchUi.WatchFace {
         var hours = hoursValue.format("%02d").toString();
         var minutes = _dataProvider.getMinutes();
 
-        var darkMode = Application.getApp().getProperty("DarkMode");
+        var darkMode = Application.Properties.getValue("DarkMode");
         if (darkMode == 0 /* Auto */) {
             Colors.setDarkMode(hoursValue >= 21 || hoursValue <= 6);
         } else if (darkMode == 1) {

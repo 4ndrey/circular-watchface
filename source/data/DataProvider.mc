@@ -1,4 +1,5 @@
 import Toybox.ActivityMonitor;
+import Toybox.Application;
 import Toybox.SensorHistory;
 import Toybox.System;
 import Toybox.Time;
@@ -53,7 +54,7 @@ class DataProvider {
 
     function getDate() {
         var today = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-        var dateFormat = Application.getApp().getProperty("DateFormat");
+        var dateFormat = Application.Properties.getValue("DateFormat");
         var result = stringReplace(dateFormat, "d", today.day_of_week);
         result = stringReplace(result, "D", today.day.toString());
         result = stringReplace(result, "M", today.month.toString());
