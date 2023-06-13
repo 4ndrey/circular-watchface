@@ -74,7 +74,7 @@ class ActivityRing extends WatchUi.Drawable {
         x = radius + Math.cos(iconAngle) * (radius - penWidth / 2);
         y = radius - Math.sin(iconAngle) * (radius - penWidth / 2);
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT); 
-        dc.drawText(x, y, WatchUi.loadResource( Rez.Fonts.IconsFont ), segment.icon(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        dc.drawText(x, y, Fonts.iconsFont, segment.icon(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
 }

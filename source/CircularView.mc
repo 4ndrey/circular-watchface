@@ -70,10 +70,19 @@ class CircularView extends WatchUi.WatchFace {
         date.text = _dataProvider.getDate();
         date.font = Fonts.smallFont;
         date.origin = _layout.datePosition;
+        date.alignment = Graphics.TEXT_JUSTIFY_CENTER;
 
         var weatherView = View.findDrawableById("Weather") as WeatherComplication;
         weatherView.origin = _layout.weatherPosition;
-        weatherView.weatherData = _dataProvider.getWeatherData();        
+        weatherView.weatherData = _dataProvider.getWeatherData(); 
+
+        var batteryView = View.findDrawableById("Battery") as BatteryView;
+        batteryView.origin = _layout.batteryPosition;
+        batteryView.isVisible = Application.Properties.getValue("BatteryIndicator");
+
+        var notificationsView = View.findDrawableById("Notifications") as NotificationsView;
+        notificationsView.origin = _layout.notificationsPosition;
+        notificationsView.isVisible = Application.Properties.getValue("NotificationsBadge") && _dataProvider.hasNotifications();
         
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);

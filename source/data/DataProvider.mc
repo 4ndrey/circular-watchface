@@ -19,8 +19,10 @@ class DataProvider {
         var segments = [];
 
         segments.add(stepsSegment);
-        if (activeMinutesSegment.isValid) { segments.add(activeMinutesSegment); }
+
+        if (activeMinutesSegment.isValid && activeMinutesSegment.value >= floorsSegment.value) { segments.add(activeMinutesSegment); }
         else { segments.add(floorsSegment); }
+
         segments.add(energySegment);
 
         return segments;
@@ -66,39 +68,43 @@ class DataProvider {
     }
 
     function getWeatherData() {
-        var weatherData = new WeatherData();        
-        var weather = Weather.getCurrentConditions();
-        if (weather != null) {
-            weatherData.currentTemperature = weather.temperature;
-            weatherData.minTemperature = weather.lowTemperature;
-            weatherData.maxTemperature = weather.highTemperature;
-            weatherData.upcomingWeatherCondition = weather.condition;
+        if (self has :Weather) {
+            var weatherData = new WeatherData();        
+            var weather = Weather.getCurrentConditions();
+            if (weather != null) {
+                weatherData.currentTemperature = weather.temperature;
+                weatherData.minTemperature = weather.lowTemperature;
+                weatherData.maxTemperature = weather.highTemperature;
+                weatherData.upcomingWeatherCondition = weather.condition;
 
-            var forecasts = Weather.getHourlyForecast();
-            if (forecasts != null && forecasts.size() > 0) {
-                var max = forecasts.size() > 10 ? 10 : forecasts.size();
-                var dt = (weather.highTemperature - weather.lowTemperature) / 4;
-                var color;
-                for (var i = 0; i < max; i++) {
-                    if (forecasts[i].precipitationChance >= 40) {
-                        color = Graphics.COLOR_DK_BLUE;
-                    } else {
-                        var t = forecasts[i].temperature - weather.lowTemperature;
-                        if (t <= dt) {
-                            color = Graphics.COLOR_BLUE;
-                        } else if (t <= 3 * dt) {
-                            color = Graphics.COLOR_YELLOW;
+                var forecasts = Weather.getHourlyForecast();
+                if (forecasts != null && forecasts.size() > 0) {
+                    var max = forecasts.size() > 10 ? 10 : forecasts.size();
+                    var dt = (weather.highTemperature - weather.lowTemperature) / 4;
+                    var color;
+                    for (var i = 0; i < max; i++) {
+                        if (forecasts[i].precipitationChance >= 40) {
+                            color = Graphics.COLOR_DK_BLUE;
                         } else {
-                            color = Graphics.COLOR_ORANGE;
+                            var t = forecasts[i].temperature - weather.lowTemperature;
+                            if (t <= dt) {
+                                color = Graphics.COLOR_BLUE;
+                            } else if (t <= 3 * dt) {
+                                color = Graphics.COLOR_YELLOW;
+                            } else {
+                                color = Graphics.COLOR_ORANGE;
+                            }
                         }
-                    }
 
-                    var forecast = new Forecast(color, forecasts[i].forecastTime);
-                    weatherData.forecasts.add(forecast);
+                        var forecast = new Forecast(color, forecasts[i].forecastTime);
+                        weatherData.forecasts.add(forecast);
+                    }
                 }
             }
+            return weatherData.isValid() ? weatherData : null;
+        } else {
+            return null;
         }
-        return weatherData.isValid() ? weatherData : null;
     }
 
     hidden function normalize(current, goal) {

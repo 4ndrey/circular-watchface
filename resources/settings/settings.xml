@@ -16,4 +16,12 @@
         <settingConfig type="alphaNumeric" required="true" />
     </setting>
 
+    <setting propertyKey="@Properties.NotificationsBadge" title="@Strings.NotificationsBadgeTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.BatteryIndicator" title="@Strings.BatteryIndicatorTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
 </settings>

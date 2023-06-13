@@ -6,4 +6,6 @@
     <string id="On">On</string>
     <string id="Off">Off</string>
     <string id="DateFormatTitle">Date Format (d - day of week, D - day of month, M - month), default: 'd D'</string>
+    <string id="NotificationsBadgeTitle">Show notifications indicator</string>
+    <string id="BatteryIndicatorTitle">Show battery indicator</string>
 </strings>

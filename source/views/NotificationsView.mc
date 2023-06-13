@@ -1,25 +1,26 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
+import Toybox.System;
 
-class Label extends WatchUi.Drawable {
+class NotificationsView extends WatchUi.Drawable {
 
     var origin;
-    var text;
-    var font;
-    var alignment = Graphics.TEXT_JUSTIFY_LEFT;
+    var isVisible;
 
     function initialize(params) {
         Drawable.initialize(params);
     }
 
     function draw(dc as Dc) as Void {
+        if (!isVisible) { return; }
+
         dc.setColor(Colors.foregroundColor, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             origin.x,
             origin.y,
-            font,
-            text,
-            alignment
+            Fonts.iconsFont, 
+            "n",
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );        
     }
 
