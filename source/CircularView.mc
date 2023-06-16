@@ -76,10 +76,6 @@ class CircularView extends WatchUi.WatchFace {
         weatherView.origin = _layout.weatherPosition;
         weatherView.weatherData = _dataProvider.getWeatherData(); 
 
-        var batteryView = View.findDrawableById("Battery") as BatteryView;
-        batteryView.origin = _layout.batteryPosition;
-        batteryView.isVisible = Application.Properties.getValue("BatteryIndicator");
-
         var notificationsView = View.findDrawableById("Notifications") as NotificationsView;
         notificationsView.origin = _layout.notificationsPosition;
         notificationsView.isVisible = Application.Properties.getValue("NotificationsBadge") && _dataProvider.hasNotifications();

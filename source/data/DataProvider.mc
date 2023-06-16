@@ -25,6 +25,11 @@ class DataProvider {
 
         segments.add(energySegment);
 
+        if (Application.Properties.getValue("BatteryIndicator")) {
+            var batterySegment = new Segment(ACTIVITY_TYPE_BATTERY, normalize(System.getSystemStats().battery, 100));
+            segments.add(batterySegment);
+        }
+
         return segments;
     }
 

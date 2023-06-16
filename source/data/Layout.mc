@@ -7,7 +7,6 @@ class Layout {
     var minutesPosition;
     var datePosition;
     var weatherPosition;
-    var batteryPosition;
     var notificationsPosition;
 
     var needsUpdate = true;
@@ -28,7 +27,7 @@ class Layout {
 
         datePosition = new Point(
             screenSize.width / 2,
-            (hoursPosition.y - dateSize.height + screenSize.width / 12 - dy) / 2 + 2
+            (hoursPosition.y - dateSize.height + screenSize.width / 12 - dy) / 2 + 6
         );
 
         weatherPosition = new Point(
@@ -36,14 +35,9 @@ class Layout {
             screenSize.height * 3 / 4
         );
 
-        batteryPosition = new Point(
-            minutesPosition.x + minutesSize.width / 2,
-            minutesPosition.y + minutesSize.height + 17
-        );
-
         notificationsPosition = new Point(
             datePosition.x,
-            datePosition.y - 5
+            datePosition.y - 7
         );
 
         needsUpdate = false;
