@@ -11,33 +11,36 @@ class DataProvider {
 
     function getSegments() {
         var activityInfo = ActivityMonitor.getInfo();
-
         
-        
-        var energySegment = new Segment(ACTIVITY_TYPE_ENERGY, normalize(getBodyBattery(), 100));
-
         var segments = [];
 
+        // Steps
         var stepsSegment = new Segment(ACTIVITY_TYPE_STEPS, normalize(activityInfo.steps, activityInfo.stepGoal));
         segments.add(stepsSegment);
 
+        // Floors
         if (Application.Properties.getValue("FloorsSegment")) {
             var floorsSegment = new Segment(ACTIVITY_TYPE_FLOORS, normalize(activityInfo.floorsClimbed, activityInfo.floorsClimbedGoal));
             segments.add(floorsSegment);
         }
 
+        // Active Minutes
         if (Application.Properties.getValue("ActiveMinutesSegment")) {
             var activeMinutesSegment = new Segment(ACTIVITY_TYPE_ACTIVE_MINUTES, normalize(activityInfo.activeMinutesWeek.total, activityInfo.activeMinutesWeekGoal));
             segments.add(activeMinutesSegment);
         }
 
+        // Calories
         if (Application.Properties.getValue("CaloriesSegment")) {
             var caloriesSegment = new Segment(ACTIVITY_TYPE_CALORIES, normalize(_caloriesProvider.getCaloriesBurned(), _caloriesProvider.getCaloriesGoal()));
             segments.add(caloriesSegment);
         }
 
+        // Body Battery
+        var energySegment = new Segment(ACTIVITY_TYPE_ENERGY, normalize(getBodyBattery(), 100));
         segments.add(energySegment);
 
+        // Device Battery
         if (Application.Properties.getValue("BatteryIndicator")) {
             var batterySegment = new Segment(ACTIVITY_TYPE_BATTERY, normalize(System.getSystemStats().battery, 100));
             segments.add(batterySegment);

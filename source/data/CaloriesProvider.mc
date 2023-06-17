@@ -37,7 +37,7 @@ class CaloriesProvider {
     }
 
     function getCaloriesGoal() {
-        if (_goal == 0) {
+        if (_goal == null || _goal == 0) {
             _goal = getBmrBasedGoal();
         }
         if (_goal == null) {

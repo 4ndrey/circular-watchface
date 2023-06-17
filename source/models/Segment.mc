@@ -25,13 +25,13 @@ class Segment {
             case ACTIVITY_TYPE_STEPS:
                 return Graphics.COLOR_RED; //0xd81b60;
             case ACTIVITY_TYPE_FLOORS:
-                return Graphics.COLOR_DK_GREEN; //0x388e3c;
+                return Graphics.COLOR_GREEN; //0x388e3c;
             case ACTIVITY_TYPE_ACTIVE_MINUTES:
                 return Graphics.COLOR_ORANGE; //0x388e3c;
             case ACTIVITY_TYPE_ENERGY:
                 return Graphics.COLOR_PURPLE;
             case ACTIVITY_TYPE_CALORIES:
-                return Graphics.COLOR_PINK;
+                return Graphics.COLOR_DK_GREEN;
             case ACTIVITY_TYPE_BATTERY:
                 return Graphics.COLOR_DK_BLUE;
             default:
@@ -61,7 +61,7 @@ class Segment {
             case ACTIVITY_TYPE_FLOORS:
                 return "F";
             case ACTIVITY_TYPE_ACTIVE_MINUTES:
-                return "c";
+                return "t";
             case ACTIVITY_TYPE_ENERGY:
                 return "y";
             case ACTIVITY_TYPE_BATTERY:
