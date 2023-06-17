@@ -9,15 +9,15 @@ class Segment {
     (:debug)
     function initialize(_activityType, _value) {
         activityType = _activityType;
-        value = Math.rand() % 100 / 100.0;
-        isValid = value > 0.1;
+        value = 0.01;//Math.rand() % 100 / 100.0;
+        isValid = value >= 0.01;
     }
 
     (:release)
     function initialize(_activityType, _value) {
         activityType = _activityType;
         value = _value < 0.01 ? 0.01 : _value;
-        isValid = _value > 0.1;
+        isValid = _value >= 0.01;
     }
 
     function color() {
