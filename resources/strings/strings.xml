@@ -8,4 +8,7 @@
     <string id="DateFormatTitle">Date Format (d - day of week, D - day of month, M - month), default: 'd D'</string>
     <string id="NotificationsBadgeTitle">Show notifications indicator</string>
     <string id="BatteryIndicatorTitle">Show battery indicator</string>
+    <string id="FloorsSegmentTitle">Show climbed floors goal progress</string>
+    <string id="ActiveMinutesSegmentTitle">Show weekly active minutes goal progress</string>
+    <string id="CaloriesSegmentTitle">Show burned calories goal progress (Note: you have to set proper age, weight, height and gender inside your Garmin Profile in order to calculate your goal)</string>
 </strings>

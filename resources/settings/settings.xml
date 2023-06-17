@@ -12,6 +12,18 @@
         </settingConfig>
     </setting>
 
+    <setting propertyKey="@Properties.FloorsSegment" title="@Strings.FloorsSegmentTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.ActiveMinutesSegment" title="@Strings.ActiveMinutesSegmentTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.CaloriesSegment" title="@Strings.CaloriesSegmentTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
     <setting propertyKey="@Properties.DateFormat" title="@Strings.DateFormatTitle">
         <settingConfig type="alphaNumeric" required="true" />
     </setting>

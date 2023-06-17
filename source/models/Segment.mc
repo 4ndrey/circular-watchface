@@ -9,7 +9,7 @@ class Segment {
     (:debug)
     function initialize(_activityType, _value) {
         activityType = _activityType;
-        value = 0.01;//Math.rand() % 100 / 100.0;
+        value = 0.01;
         isValid = value >= 0.01;
     }
 
@@ -30,6 +30,8 @@ class Segment {
                 return Graphics.COLOR_ORANGE; //0x388e3c;
             case ACTIVITY_TYPE_ENERGY:
                 return Graphics.COLOR_PURPLE;
+            case ACTIVITY_TYPE_CALORIES:
+                return Graphics.COLOR_PINK;
             case ACTIVITY_TYPE_BATTERY:
                 return Graphics.COLOR_DK_BLUE;
             default:
@@ -47,8 +49,6 @@ class Segment {
                 return 0x4a411c;
             case ACTIVITY_TYPE_ENERGY:
                 return 0x1a243f;
-            case ACTIVITY_TYPE_BATTERY:
-                return Graphics.COLOR_DK_GRAY;
             default:
                 return Graphics.COLOR_TRANSPARENT;
         }
@@ -66,6 +66,8 @@ class Segment {
                 return "y";
             case ACTIVITY_TYPE_BATTERY:
                 return "h";
+            case ACTIVITY_TYPE_CALORIES:
+                return "c";
             default:
                 return "?";
         }

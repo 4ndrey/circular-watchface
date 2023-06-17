@@ -7,21 +7,34 @@ import Toybox.Time;
 class DataProvider {
 
     private var _bodyBattery = 0;
+    private var _caloriesProvider = new CaloriesProvider();
 
     function getSegments() {
         var activityInfo = ActivityMonitor.getInfo();
 
-        var stepsSegment = new Segment(ACTIVITY_TYPE_STEPS, normalize(activityInfo.steps, activityInfo.stepGoal));
-        var floorsSegment = new Segment(ACTIVITY_TYPE_FLOORS, normalize(activityInfo.floorsClimbed, activityInfo.floorsClimbedGoal));
-        var activeMinutesSegment = new Segment(ACTIVITY_TYPE_ACTIVE_MINUTES, normalize(activityInfo.activeMinutesWeek.total, activityInfo.activeMinutesWeekGoal));
+        
+        
         var energySegment = new Segment(ACTIVITY_TYPE_ENERGY, normalize(getBodyBattery(), 100));
 
         var segments = [];
 
+        var stepsSegment = new Segment(ACTIVITY_TYPE_STEPS, normalize(activityInfo.steps, activityInfo.stepGoal));
         segments.add(stepsSegment);
 
-        if (activeMinutesSegment.isValid && activeMinutesSegment.value >= floorsSegment.value) { segments.add(activeMinutesSegment); }
-        else { segments.add(floorsSegment); }
+        if (Application.Properties.getValue("FloorsSegment")) {
+            var floorsSegment = new Segment(ACTIVITY_TYPE_FLOORS, normalize(activityInfo.floorsClimbed, activityInfo.floorsClimbedGoal));
+            segments.add(floorsSegment);
+        }
+
+        if (Application.Properties.getValue("ActiveMinutesSegment")) {
+            var activeMinutesSegment = new Segment(ACTIVITY_TYPE_ACTIVE_MINUTES, normalize(activityInfo.activeMinutesWeek.total, activityInfo.activeMinutesWeekGoal));
+            segments.add(activeMinutesSegment);
+        }
+
+        if (Application.Properties.getValue("CaloriesSegment")) {
+            var caloriesSegment = new Segment(ACTIVITY_TYPE_CALORIES, normalize(_caloriesProvider.getCaloriesBurned(), _caloriesProvider.getCaloriesGoal()));
+            segments.add(caloriesSegment);
+        }
 
         segments.add(energySegment);
 
