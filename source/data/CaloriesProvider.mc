@@ -4,7 +4,7 @@ import Toybox.Time;
 
 class CaloriesProvider {
 
-    private var _goal = Application.Storage.getValue("caloriesGoal");
+    private var _goal = Application.Properties.getValue("CaloriesGoal");
 
     hidden function getBmrBasedGoal() {
         var profile = UserProfile.getProfile();
@@ -24,7 +24,7 @@ class CaloriesProvider {
             activity = 37.5;
         }
         var goal = bmr * (1 + activity / 100.0);
-        Application.Storage.setValue("caloriesGoal", goal);
+        Application.Properties.setValue("CaloriesGoal", goal.toLong());
         return goal;
     }
 

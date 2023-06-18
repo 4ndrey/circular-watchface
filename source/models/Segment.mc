@@ -9,7 +9,7 @@ class Segment {
     (:debug)
     function initialize(_activityType, _value) {
         activityType = _activityType;
-        value = 0.01;
+        value = Math.rand() % 100 / 100.0;
         isValid = value >= 0.01;
     }
 
@@ -65,7 +65,7 @@ class Segment {
             case ACTIVITY_TYPE_ENERGY:
                 return "y";
             case ACTIVITY_TYPE_BATTERY:
-                return "h";
+                return "m";
             case ACTIVITY_TYPE_CALORIES:
                 return "c";
             default:

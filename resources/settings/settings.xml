@@ -24,6 +24,10 @@
         <settingConfig type="boolean" />
     </setting>
 
+    <setting propertyKey="@Properties.CaloriesGoal" title="@Strings.CaloriesGoalTitle">
+        <settingConfig type="numeric" min="0" max="90000"/>
+    </setting>
+
     <setting propertyKey="@Properties.DateFormat" title="@Strings.DateFormatTitle">
         <settingConfig type="alphaNumeric" required="true" />
     </setting>
