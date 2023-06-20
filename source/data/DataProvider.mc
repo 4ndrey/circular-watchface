@@ -7,6 +7,8 @@ import Toybox.Time;
 class DataProvider {
 
     private var _bodyBattery = 0;
+    private var _heartRate = 0;
+
     private var _caloriesProvider = new CaloriesProvider();
 
     function getSegments() {
@@ -50,12 +52,23 @@ class DataProvider {
     }
 
     function getBodyBattery() {
-        var bbIterator = getIterator();
+        var bbIterator = getBodyBatteryIterator();
         if (bbIterator == null) { return _bodyBattery; }
         var sample = bbIterator.next();
         _bodyBattery = (sample != null && sample.data > 0) ? sample.data : _bodyBattery;        
         return _bodyBattery;
     }
+
+    function getHeartRate() {
+        if (Application.Properties.getValue("DynamicComplication") == 1 /* weather only*/) {
+            return null;
+        }
+        var interator = getHeartRateIterator();
+        if (interator == null) { return _heartRate; }
+        var sample = interator.next();
+        _heartRate = (sample != null && sample.data > 0) ? sample.data : _heartRate;        
+        return _heartRate;
+    }    
 
     function getHour() {
         var clockTime = System.getClockTime();
@@ -89,6 +102,9 @@ class DataProvider {
     }
 
     function getWeatherData() {
+        if (Application.Properties.getValue("DynamicComplication") == 2 /* HR only*/) {
+            return null;
+        }
         if (self has :Weather) {
             var weatherData = new WeatherData();        
             var weather = Weather.getCurrentConditions();
@@ -135,12 +151,22 @@ class DataProvider {
     }
 
     // Create a method to get the SensorHistoryIterator object
-    hidden function getIterator() {
+    hidden function getBodyBatteryIterator() {
         // Check device for SensorHistory compatibility
         if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getBodyBatteryHistory)) {
             // Set up the method with parameters
             return Toybox.SensorHistory.getBodyBatteryHistory({:period => 1});
         }
         return null;
-    }    
+    }
+
+    hidden function getHeartRateIterator() {
+        // Check device for SensorHistory compatibility
+        if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getHeartRateHistory)) {
+            // Set up the method with parameters
+            return Toybox.SensorHistory.getHeartRateHistory({:period => 1});
+        }
+        return null;
+    }
+    
 }

@@ -1,9 +1,5 @@
 <settings>
 
-    <setting propertyKey="@Properties.AppVersion" title="@Strings.AppVersionTitle">
-        <settingConfig type="alphaNumeric" readonly="true" />
-    </setting>
-
     <setting propertyKey="@Properties.DarkMode" title="@Strings.DarkModeTitle">
         <settingConfig type="list">
             <listEntry value="0">@Strings.Auto</listEntry>
@@ -11,6 +7,14 @@
             <listEntry value="2">@Strings.Off</listEntry>
         </settingConfig>
     </setting>
+
+    <setting propertyKey="@Properties.DynamicComplication" title="@Strings.DynamicComplicationTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.Auto</listEntry>
+            <listEntry value="1">@Strings.WeatherOnly</listEntry>
+            <listEntry value="2">@Strings.HeartRateOnly</listEntry>
+        </settingConfig>
+    </setting>    
 
     <setting propertyKey="@Properties.FloorsSegment" title="@Strings.FloorsSegmentTitle">
         <settingConfig type="boolean" />
@@ -27,7 +31,7 @@
     <setting propertyKey="@Properties.CaloriesGoal" title="@Strings.CaloriesGoalTitle">
         <settingConfig type="numeric" min="0" max="90000"/>
     </setting>
-
+        
     <setting propertyKey="@Properties.DateFormat" title="@Strings.DateFormatTitle">
         <settingConfig type="alphaNumeric" required="true" />
     </setting>

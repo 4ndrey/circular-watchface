@@ -8,4 +8,5 @@
     <property id="ActiveMinutesSegment" type="boolean">false</property>
     <property id="CaloriesSegment" type="boolean">true</property>
     <property id="CaloriesGoal" type="number">0</property>
+    <property id="DynamicComplication" type="number">0</property>
 </properties>

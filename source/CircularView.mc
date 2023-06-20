@@ -72,9 +72,10 @@ class CircularView extends WatchUi.WatchFace {
         date.origin = _layout.datePosition;
         date.alignment = Graphics.TEXT_JUSTIFY_CENTER;
 
-        var weatherView = View.findDrawableById("Weather") as WeatherComplication;
-        weatherView.origin = _layout.weatherPosition;
-        weatherView.weatherData = _dataProvider.getWeatherData(); 
+        var complicationView = View.findDrawableById("Complication") as Complication;
+        complicationView.origin = _layout.weatherPosition;
+        complicationView.heartRateData = _dataProvider.getHeartRate();
+        complicationView.weatherData = _dataProvider.getWeatherData(); 
 
         var notificationsView = View.findDrawableById("Notifications") as NotificationsView;
         notificationsView.origin = _layout.notificationsPosition;

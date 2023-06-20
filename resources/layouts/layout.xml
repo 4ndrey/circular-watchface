@@ -5,5 +5,5 @@
     <drawable id="Minutes" class="Label"/>
     <drawable id="Date" class="Label"/>
     <drawable id="Notifications" class="NotificationsView"/>
-    <drawable id="Weather" class="WeatherComplication"/>
+    <drawable id="Complication" class="Complication"/>
 </layout>
