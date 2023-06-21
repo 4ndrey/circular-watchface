@@ -18,6 +18,8 @@ class Complication extends WatchUi.Drawable {
     var weatherData;
     var heartRateData;
 
+    var needsUpdate = false;
+
     var _zones;
     var _hrColors = {
         0 => Graphics.COLOR_DK_GRAY,
@@ -87,6 +89,8 @@ class Complication extends WatchUi.Drawable {
             "p",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         ); 
+
+        needsUpdate = true;
     }
 
     hidden function hrRatio() {
@@ -119,12 +123,12 @@ class Complication extends WatchUi.Drawable {
             dc.setColor(forecast.color, Colors.backgroundColor);
             dc.drawLine(
                 start.x + step * i, start.y - 1,
-                start.x + step * (i + 1) - (i == (forecasts.size() - 1) ? penWidth : 0), start.y - 1
+                start.x + step * (i + 1), start.y - 1
             );            
         }
 
         // Add rounding to line
-        dc.fillCircle(end.x - 3, end.y - 1, penWidth / 2);        
+        dc.fillCircle(end.x + 2, end.y - 1, penWidth / 2);        
         dc.setColor(forecasts[0].color, Colors.backgroundColor);
         dc.fillCircle(start.x - 3, start.y - 1, penWidth / 2);
 
@@ -136,12 +140,14 @@ class Complication extends WatchUi.Drawable {
 
         // Draw min and max temperature
         dc.setColor(Colors.foregroundColorAlt, Colors.backgroundColor); 
-        dc.drawText(start.x - 14, y - 2, Graphics.FONT_XTINY, weatherData.minTemperature.toString(), 
+        dc.drawText(start.x - 12, y - 2, Graphics.FONT_XTINY, weatherData.minTemperature.toString(), 
             Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER
         );
-        dc.drawText(end.x + 8, y - 2, Graphics.FONT_XTINY, weatherData.maxTemperature.toString(), 
+        dc.drawText(end.x + 12, y - 2, Graphics.FONT_XTINY, weatherData.maxTemperature.toString(), 
             Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
         );
+
+        needsUpdate = false;
     }
 
 }

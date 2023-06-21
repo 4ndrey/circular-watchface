@@ -21,6 +21,11 @@ class CircularApp extends Application.AppBase {
         return [ new CircularView() ] as Array<Views or InputDelegates>;
     }
 
+    // New app settings have been received so trigger a UI update
+    function onSettingsChanged() {
+        WatchUi.requestUpdate();
+    }
+
 }
 
 function getApp() as CircularApp {

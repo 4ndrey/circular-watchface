@@ -63,6 +63,10 @@ class DataProvider {
         if (Application.Properties.getValue("DynamicComplication") == 1 /* weather only*/) {
             return null;
         }
+        var value = Activity.getActivityInfo().currentHeartRate;
+        if (value != null) {
+            return value;
+        }
         var interator = getHeartRateIterator();
         if (interator == null) { return _heartRate; }
         var sample = interator.next();

@@ -4,6 +4,10 @@
     <!--
         Use "Monkey C: Edit Application" from the Visual Studio Code command palette
         to update the application attributes.
+
+        Test id: 3de64568-b967-43a5-933c-67bbce0b0a53
+        Prod id: 3de64568-b967-43a5-933c-67bbce00beef
+
     -->
     <iq:application id="3de64568-b967-43a5-933c-67bbce00beef" type="watchface" name="@Strings.AppName" entry="CircularApp" launcherIcon="@Drawables.LauncherIcon" minApiLevel="3.1.6">
         <!--

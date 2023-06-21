@@ -9,6 +9,8 @@ class CircularView extends WatchUi.WatchFace {
     private var _fonts;
     private var _layout;
 
+    private var needsPartialUpdate = false;
+
     function initialize() {
         WatchFace.initialize();
 
@@ -75,7 +77,8 @@ class CircularView extends WatchUi.WatchFace {
         var complicationView = View.findDrawableById("Complication") as Complication;
         complicationView.origin = _layout.weatherPosition;
         complicationView.heartRateData = _dataProvider.getHeartRate();
-        complicationView.weatherData = _dataProvider.getWeatherData(); 
+        complicationView.weatherData = _dataProvider.getWeatherData();
+        needsPartialUpdate = complicationView.needsUpdate;
 
         var notificationsView = View.findDrawableById("Notifications") as NotificationsView;
         notificationsView.origin = _layout.notificationsPosition;
@@ -84,6 +87,14 @@ class CircularView extends WatchUi.WatchFace {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
+
+    // Partial updates
+	function onPartialUpdate(dc) {
+        if (needsPartialUpdate) {
+            var complicationView = View.findDrawableById("Complication") as Complication;
+            complicationView.heartRateData = _dataProvider.getHeartRate();
+        }
+	}
 
     // Called when this View is removed from the screen. Save the
     // state of this View here. This includes freeing resources from
