@@ -27,7 +27,7 @@ class Layout {
 
         datePosition = new Point(
             screenSize.width / 2,
-            (hoursPosition.y - dateSize.height + screenSize.width / 12 - dy) / 2 + 6
+            (hoursPosition.y - dateSize.height + screenSize.width / 12 - dy) / 2 + 7
         );
 
         weatherPosition = new Point(
@@ -37,7 +37,7 @@ class Layout {
 
         notificationsPosition = new Point(
             datePosition.x,
-            datePosition.y - 5
+            datePosition.y - 4
         );
 
         needsUpdate = false;

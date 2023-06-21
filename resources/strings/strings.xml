@@ -13,6 +13,6 @@
     <string id="CaloriesSegmentTitle">Show burned calories goal progress</string>
     <string id="CaloriesGoalTitle">Adjust your personal calories goal</string>
     <string id="DynamicComplicationTitle">Complication mode</string>
-    <string id="WeatherOnly">Show only weather</string>
-    <string id="HeartRateOnly">Show only heart rate</string>
+    <string id="WeatherOnly">Only weather</string>
+    <string id="HeartRateOnly">Only heart rate</string>
 </strings>

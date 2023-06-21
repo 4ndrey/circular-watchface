@@ -38,8 +38,9 @@ class Complication extends WatchUi.Drawable {
     }    
 
     function draw(dc as Dc) as Void {
-        if (heartRateData != null && _zones != null 
-            && (heartRateData > _zones[1] || Application.Properties.getValue("DynamicComplication") == 2 /* HR only*/)) {
+        var zones = _zones as Array<Number>;
+        if (heartRateData != null && zones != null 
+            && (heartRateData >= zones[1] || Application.Properties.getValue("DynamicComplication") == 2 /* HR only*/)) {
             drawHeartRate(dc);
         } else {
             drawWeather(dc);
@@ -47,6 +48,8 @@ class Complication extends WatchUi.Drawable {
     }
 
     hidden function drawHeartRate(dc as Dc) {
+        if (heartRateData == null) { return; }
+
         var x = origin.x;
         var y = origin.y;
 
@@ -65,7 +68,7 @@ class Complication extends WatchUi.Drawable {
         }
 
         // Add rounding to line
-        dc.fillCircle(end.x - 3, end.y - 1, penWidth / 2);        
+        dc.fillCircle(end.x - 6, end.y - 1, penWidth / 2);        
         dc.setColor(_hrColors.get(0), Colors.backgroundColor);
         dc.fillCircle(start.x - 3, start.y - 1, penWidth / 2);
 
@@ -94,10 +97,11 @@ class Complication extends WatchUi.Drawable {
     }
 
     hidden function hrRatio() {
-        if (_zones.size() == 0) {
+        var zones = _zones as Array<Number>;
+        if (zones.size() == 0) {
             return 0;
         }
-        var ratio = (heartRateData - _zones[0]) * 1.0 / (_zones[5] - _zones[0]);
+        var ratio = (heartRateData - zones[0]) * 1.0 / (zones[5] - zones[0]);
         ratio = ratio < 0 ? 0 : ratio;
         ratio = ratio > 1 ? 1.0 : ratio;
         return ratio;

@@ -7,7 +7,6 @@ import Toybox.Time;
 class DataProvider {
 
     private var _bodyBattery = 0;
-    private var _heartRate = 0;
 
     private var _caloriesProvider = new CaloriesProvider();
 
@@ -63,15 +62,17 @@ class DataProvider {
         if (Application.Properties.getValue("DynamicComplication") == 1 /* weather only*/) {
             return null;
         }
-        var value = Activity.getActivityInfo().currentHeartRate;
-        if (value != null) {
-            return value;
+        var info = Activity.getActivityInfo();
+        if (info != null) {
+            var value = info.currentHeartRate;
+            if (value != null) {
+                return value;
+            }
         }
         var interator = getHeartRateIterator();
-        if (interator == null) { return _heartRate; }
+        if (interator == null) { return null; }
         var sample = interator.next();
-        _heartRate = (sample != null && sample.data > 0) ? sample.data : _heartRate;        
-        return _heartRate;
+        return sample != null ? sample.data : null;
     }    
 
     function getHour() {
