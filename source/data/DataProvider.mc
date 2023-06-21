@@ -101,8 +101,8 @@ class DataProvider {
         return result;
     }
 
-    function hasNotifications() {
-        return System.getDeviceSettings().notificationCount > 0;
+    function notificationsCount() {
+        return System.getDeviceSettings().notificationCount;
     }
 
     function getWeatherData() {

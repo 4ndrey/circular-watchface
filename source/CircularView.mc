@@ -80,9 +80,11 @@ class CircularView extends WatchUi.WatchFace {
         complicationView.weatherData = _dataProvider.getWeatherData();
         needsPartialUpdate = complicationView.needsUpdate;
 
-        var notificationsView = View.findDrawableById("Notifications") as NotificationsView;
-        notificationsView.origin = _layout.notificationsPosition;
-        notificationsView.isVisible = Application.Properties.getValue("NotificationsBadge") && _dataProvider.hasNotifications();
+        if (Application.Properties.getValue("NotificationsBadge")) {
+            var notificationsView = View.findDrawableById("Notifications") as NotificationsView;
+            notificationsView.origin = _layout.notificationsPosition;
+            notificationsView.updateWith(_dataProvider.notificationsCount());
+        }
         
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
