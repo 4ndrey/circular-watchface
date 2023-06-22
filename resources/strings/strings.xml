@@ -5,14 +5,21 @@
     <string id="Auto">Auto</string>
     <string id="On">On</string>
     <string id="Off">Off</string>
-    <string id="DateFormatTitle">Date Format (d - day of week, D - day of month, M - month), default: 'd D'</string>
+    <string id="DateSection">Date Appearance customization</string>
+    <string id="DateSectionDescription">(d - day of week, D - day of month, M - month)</string>
+    <string id="DateFormatTitle">Date Format (default: 'd D')</string>
     <string id="NotificationsBadgeTitle">Show notifications indicator</string>
-    <string id="BatteryIndicatorTitle">Show battery indicator</string>
-    <string id="FloorsSegmentTitle">Show climbed floors goal progress</string>
-    <string id="ActiveMinutesSegmentTitle">Show weekly active minutes goal progress</string>
-    <string id="CaloriesSegmentTitle">Show burned calories goal progress</string>
-    <string id="CaloriesGoalTitle">Adjust your personal calories goal</string>
+    <string id="BatteryIndicatorTitle">Show remaining battery</string>
+    <string id="FloorsSegmentTitle">Show climbed floors</string>
+    <string id="ActiveMinutesSegmentTitle">Show active minutes</string>
+    <string id="CaloriesSegmentTitle">Show burned calories</string>
+    <string id="CaloriesGoalTitle">Calories goal</string>
     <string id="DynamicComplicationTitle">Complication mode</string>
     <string id="WeatherOnly">Only weather</string>
     <string id="HeartRateOnly">Only heart rate</string>
+    <string id="NotesTitle">Note to myself</string>
+    <string id="Segments">Circular Segments</string>
+    <string id="SegmentsDescription">Visible segment indicators</string>
+    <string id="MainSection">Base Settings</string>
+    <string id="TogglesSection">Additional Toggles</string>
 </strings>

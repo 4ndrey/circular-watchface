@@ -1,47 +1,67 @@
 <settings>
 
-    <setting propertyKey="@Properties.DarkMode" title="@Strings.DarkModeTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.Auto</listEntry>
-            <listEntry value="1">@Strings.On</listEntry>
-            <listEntry value="2">@Strings.Off</listEntry>
-        </settingConfig>
-    </setting>
+    <group id="Main" title="@Strings.MainSection">
 
-    <setting propertyKey="@Properties.DynamicComplication" title="@Strings.DynamicComplicationTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.Auto</listEntry>
-            <listEntry value="1">@Strings.WeatherOnly</listEntry>
-            <listEntry value="2">@Strings.HeartRateOnly</listEntry>
-        </settingConfig>
-    </setting>    
+        <setting propertyKey="@Properties.DarkMode" title="@Strings.DarkModeTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.Auto</listEntry>
+                <listEntry value="1">@Strings.On</listEntry>
+                <listEntry value="2">@Strings.Off</listEntry>
+            </settingConfig>
+        </setting>
 
-    <setting propertyKey="@Properties.FloorsSegment" title="@Strings.FloorsSegmentTitle">
-        <settingConfig type="boolean" />
-    </setting>
+        <setting propertyKey="@Properties.DynamicComplication" title="@Strings.DynamicComplicationTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.Auto</listEntry>
+                <listEntry value="1">@Strings.WeatherOnly</listEntry>
+                <listEntry value="2">@Strings.HeartRateOnly</listEntry>
+            </settingConfig>
+        </setting>
 
-    <setting propertyKey="@Properties.ActiveMinutesSegment" title="@Strings.ActiveMinutesSegmentTitle">
-        <settingConfig type="boolean" />
-    </setting>
+        <setting propertyKey="@Properties.Notes" title="@Strings.NotesTitle">
+            <settingConfig type="alphaNumeric" maxLength="18"/>
+        </setting>
 
-    <setting propertyKey="@Properties.CaloriesSegment" title="@Strings.CaloriesSegmentTitle">
-        <settingConfig type="boolean" />
-    </setting>
+    </group>
 
-    <setting propertyKey="@Properties.CaloriesGoal" title="@Strings.CaloriesGoalTitle">
-        <settingConfig type="numeric" min="0" max="90000"/>
-    </setting>
+    <group id="Segments" title="@Strings.Segments" description="@Strings.SegmentsDescription">
+
+        <setting propertyKey="@Properties.FloorsSegment" title="@Strings.FloorsSegmentTitle">
+            <settingConfig type="boolean" />
+        </setting>
+
+        <setting propertyKey="@Properties.ActiveMinutesSegment" title="@Strings.ActiveMinutesSegmentTitle">
+            <settingConfig type="boolean" />
+        </setting>
+
+        <setting propertyKey="@Properties.CaloriesSegment" title="@Strings.CaloriesSegmentTitle">
+            <settingConfig type="boolean" />
+        </setting>
+
+        <setting propertyKey="@Properties.CaloriesGoal" title="@Strings.CaloriesGoalTitle">
+            <settingConfig type="numeric" min="0" max="90000"/>
+        </setting>
+
+        <setting propertyKey="@Properties.BatteryIndicator" title="@Strings.BatteryIndicatorTitle">
+            <settingConfig type="boolean" />
+        </setting>
         
-    <setting propertyKey="@Properties.DateFormat" title="@Strings.DateFormatTitle">
-        <settingConfig type="alphaNumeric" required="true" />
-    </setting>
+    </group>
 
-    <setting propertyKey="@Properties.NotificationsBadge" title="@Strings.NotificationsBadgeTitle">
-        <settingConfig type="boolean" />
-    </setting>
+    <group id="Toggles" title="@Strings.TogglesSection">
 
-    <setting propertyKey="@Properties.BatteryIndicator" title="@Strings.BatteryIndicatorTitle">
-        <settingConfig type="boolean" />
-    </setting>
+        <setting propertyKey="@Properties.NotificationsBadge" title="@Strings.NotificationsBadgeTitle">
+            <settingConfig type="boolean" />
+        </setting>
+
+    </group>
+
+    <group id="Date" title="@Strings.DateSection" description="@Strings.DateSectionDescription">
+        
+        <setting propertyKey="@Properties.DateFormat" title="@Strings.DateFormatTitle">
+            <settingConfig type="alphaNumeric" required="true" />
+        </setting>
+
+    </group>
 
 </settings>

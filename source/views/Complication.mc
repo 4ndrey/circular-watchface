@@ -38,12 +38,17 @@ class Complication extends WatchUi.Drawable {
     }    
 
     function draw(dc as Dc) as Void {
-        var zones = _zones as Array<Number>;
-        if (heartRateData != null && zones != null 
-            && (heartRateData >= zones[1] || Application.Properties.getValue("DynamicComplication") == 2 /* HR only*/)) {
-            drawHeartRate(dc);
+        var notes = Application.Properties.getValue("Notes");
+        if (notes != null && notes.length() > 0) {
+            drawNotes(dc, notes);
         } else {
-            drawWeather(dc);
+            var zones = _zones as Array<Number>;
+            if (heartRateData != null && zones != null 
+                && (heartRateData >= zones[1] || Application.Properties.getValue("DynamicComplication") == 2 /* HR only*/)) {
+                drawHeartRate(dc);
+            } else {
+                drawWeather(dc);
+            }
         }
     }
 
@@ -152,6 +157,13 @@ class Complication extends WatchUi.Drawable {
         );
 
         needsUpdate = false;
+    }
+
+    hidden function drawNotes(dc as Dc, notes as String) {
+        dc.setColor(Colors.foregroundColor, Graphics.COLOR_TRANSPARENT); 
+        dc.drawText(origin.x, origin.y, Graphics.FONT_SYSTEM_TINY, notes, 
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+        ); 
     }
 
 }

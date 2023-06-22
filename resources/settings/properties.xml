@@ -9,4 +9,5 @@
     <property id="CaloriesSegment" type="boolean">true</property>
     <property id="CaloriesGoal" type="number">0</property>
     <property id="DynamicComplication" type="number">0</property>
+    <property id="Notes" type="string"></property>
 </properties>
