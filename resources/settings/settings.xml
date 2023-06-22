@@ -1,6 +1,6 @@
 <settings>
 
-    <group id="Main" title="@Strings.MainSection">
+    <!-- <group id="Main" title="@Strings.MainSection"> -->
 
         <setting propertyKey="@Properties.DarkMode" title="@Strings.DarkModeTitle">
             <settingConfig type="list">
@@ -22,9 +22,9 @@
             <settingConfig type="alphaNumeric" maxLength="18"/>
         </setting>
 
-    </group>
+    <!-- </group> -->
 
-    <group id="Segments" title="@Strings.Segments" description="@Strings.SegmentsDescription">
+    <!-- <group id="Segments" title="@Strings.Segments" description="@Strings.SegmentsDescription"> -->
 
         <setting propertyKey="@Properties.FloorsSegment" title="@Strings.FloorsSegmentTitle">
             <settingConfig type="boolean" />
@@ -46,22 +46,22 @@
             <settingConfig type="boolean" />
         </setting>
         
-    </group>
+    <!-- </group> -->
 
-    <group id="Toggles" title="@Strings.TogglesSection">
+    <!-- <group id="Toggles" title="@Strings.TogglesSection"> -->
 
         <setting propertyKey="@Properties.NotificationsBadge" title="@Strings.NotificationsBadgeTitle">
             <settingConfig type="boolean" />
         </setting>
 
-    </group>
+    <!-- </group> -->
 
-    <group id="Date" title="@Strings.DateSection" description="@Strings.DateSectionDescription">
+    <!-- <group id="Date" title="@Strings.DateSection" description="@Strings.DateSectionDescription"> -->
         
         <setting propertyKey="@Properties.DateFormat" title="@Strings.DateFormatTitle">
             <settingConfig type="alphaNumeric" required="true" />
         </setting>
 
-    </group>
+    <!-- </group> -->
 
 </settings>

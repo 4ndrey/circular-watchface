@@ -7,7 +7,7 @@
     <string id="Off">Off</string>
     <string id="DateSection">Date Appearance customization</string>
     <string id="DateSectionDescription">(d - day of week, D - day of month, M - month)</string>
-    <string id="DateFormatTitle">Date Format (default: 'd D')</string>
+    <string id="DateFormatTitle">Date Format (d - day of week, D - day of month, M - month, default: 'd D')</string>
     <string id="NotificationsBadgeTitle">Show notifications indicator</string>
     <string id="BatteryIndicatorTitle">Show remaining battery</string>
     <string id="FloorsSegmentTitle">Show climbed floors</string>
