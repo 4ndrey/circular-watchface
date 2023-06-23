@@ -17,17 +17,17 @@ class Layout {
 
         hoursPosition = new Point(
             (screenSize.width - hoursSize.width - minutesSize.width - timePadding) / 2,
-            (screenSize.height - hoursSize.height) / 2 - dy
+            (screenSize.height - hoursSize.height) / 2 - dy + 2
         );
 
         minutesPosition = new Point(
             hoursPosition.x + hoursSize.width + timePadding,
-            hoursPosition.y + (hoursSize.height - minutesSize.height) / 2 - dy
+            hoursPosition.y + (hoursSize.height - minutesSize.height) / 2 - dy + 2
         );
 
         datePosition = new Point(
             screenSize.width / 2,
-            (hoursPosition.y - dateSize.height + screenSize.width / 12 - dy) / 2 + 7
+            (hoursPosition.y - dateSize.height + screenSize.width / 12 - dy) / 2 + 11
         );
 
         weatherPosition = new Point(
@@ -36,8 +36,8 @@ class Layout {
         );
 
         notificationsPosition = new Point(
-            datePosition.x,
-            datePosition.y - 4
+            datePosition.x + 1,
+            datePosition.y - 7
         );
 
         needsUpdate = false;

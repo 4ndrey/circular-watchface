@@ -103,7 +103,11 @@ class DataProvider {
     }
 
     function notificationsCount() {
-        return System.getDeviceSettings().notificationCount;
+        if (!System.getDeviceSettings().phoneConnected) {
+            return null;
+        } else {
+            return System.getDeviceSettings().notificationCount;
+        }
     }
 
     function getWeatherData() {
