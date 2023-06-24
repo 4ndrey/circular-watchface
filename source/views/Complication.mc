@@ -8,11 +8,8 @@ import Toybox.UserProfile;
 
 class Complication extends WatchUi.Drawable {
 
-    private var radius;
     private static const unit = "°";
-    private static const toPi = Math.PI / 180;
     private static const penWidth = 8;
-    private static var arcRadius = 0;
 
     var origin;
     var weatherData;
@@ -31,9 +28,7 @@ class Complication extends WatchUi.Drawable {
 
     function initialize(params) {
         Drawable.initialize(params);
-        radius = System.getDeviceSettings().screenHeight / 2;
-        arcRadius = System.getDeviceSettings().screenHeight / 8;
-
+    
         _zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
     }    
 

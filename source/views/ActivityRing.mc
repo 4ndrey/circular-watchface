@@ -41,7 +41,6 @@ class ActivityRing extends WatchUi.Drawable {
     }
 
     hidden function _drawSegment(dc as Dc, start, mid, end, segment as Segment) {
-        var startAngle = start * toPi;
         var midAngle = mid * toPi;
         var endAngle = end * toPi;
 

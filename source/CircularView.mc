@@ -6,7 +6,6 @@ import Toybox.WatchUi;
 class CircularView extends WatchUi.WatchFace {
 
     private var _dataProvider;
-    private var _fonts;
     private var _layout;
 
     private var needsPartialUpdate = false;
