@@ -37,7 +37,7 @@ class Layout {
 
         notificationsPosition = new Point(
             datePosition.x + 1,
-            datePosition.y - 7
+            datePosition.y - 6
         );
 
         needsUpdate = false;

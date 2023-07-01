@@ -2,7 +2,7 @@
     <property id="AppVersion" type="string">0.4.0</property>
     <property id="DarkMode" type="number">0</property>
     <property id="DateFormat" type="string">d D</property>
-    <property id="NotificationsBadge" type="boolean">false</property>
+    <property id="NotificationsBadge" type="boolean">true</property>
     <property id="BatteryIndicator" type="boolean">false</property>
     <property id="FloorsSegment" type="boolean">false</property>
     <property id="ActiveMinutesSegment" type="boolean">false</property>

@@ -25,7 +25,7 @@ class Segment {
             case ACTIVITY_TYPE_STEPS:
                 return Graphics.COLOR_RED; //0xd81b60;
             case ACTIVITY_TYPE_FLOORS:
-                return Graphics.COLOR_GREEN; //0x388e3c;
+                return Graphics.COLOR_YELLOW; //0x388e3c;
             case ACTIVITY_TYPE_ACTIVE_MINUTES:
                 return Graphics.COLOR_ORANGE; //0x388e3c;
             case ACTIVITY_TYPE_ENERGY:
