@@ -1,5 +1,6 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
+import Toybox.System;
 
 class Fonts {
     static var bigFont;
@@ -9,8 +10,12 @@ class Fonts {
 
     static function load() {
         if (bigFont == null) {
-            bigFont = WatchUi.loadResource( Rez.Fonts.BigFont );
-            mediumFont = WatchUi.loadResource( Rez.Fonts.MediumFont );
+            bigFont = System.getDeviceSettings().screenHeight > 400 ? 
+                Graphics.FONT_SYSTEM_NUMBER_THAI_HOT : WatchUi.loadResource( Rez.Fonts.BigFont );
+
+            mediumFont = System.getDeviceSettings().screenHeight > 400 ?
+                Graphics.FONT_SYSTEM_NUMBER_MEDIUM : WatchUi.loadResource( Rez.Fonts.MediumFont );
+
             smallFont = Graphics.FONT_SYSTEM_TINY;
             iconsFont = WatchUi.loadResource( Rez.Fonts.IconsFont );
         }

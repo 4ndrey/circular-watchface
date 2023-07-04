@@ -1,7 +1,7 @@
 import Toybox.Graphics;
 
 class Layout {
-    static private const timePadding = 8;
+    private var timePadding = 0;
 
     var hoursPosition;
     var minutesPosition;
@@ -14,6 +14,10 @@ class Layout {
     function update(dc, hoursSize, minutesSize, dateSize) {
         var screenSize = new Size(dc.getWidth(), dc.getHeight());
         var dy = 5;
+
+        if (timePadding == 0) {
+            timePadding = screenSize.height / 30;
+        }
 
         hoursPosition = new Point(
             (screenSize.width - hoursSize.width - minutesSize.width - timePadding) / 2,
@@ -37,7 +41,7 @@ class Layout {
 
         notificationsPosition = new Point(
             datePosition.x + 1,
-            datePosition.y - 6
+            screenSize.height / 12 + (datePosition.y - screenSize.height / 12 + 12) / 2 + 2
         );
 
         needsUpdate = false;

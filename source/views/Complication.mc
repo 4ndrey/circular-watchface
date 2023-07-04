@@ -9,7 +9,7 @@ import Toybox.UserProfile;
 class Complication extends WatchUi.Drawable {
 
     private static const unit = "°";
-    private static const penWidth = 8;
+    private var penWidth = 8;
 
     var origin;
     var weatherData;
@@ -28,6 +28,10 @@ class Complication extends WatchUi.Drawable {
 
     function initialize(params) {
         Drawable.initialize(params);
+
+        // if (penWidth == 0) {
+        //     penWidth = System.getDeviceSettings().screenHeight / 30;
+        // }        
     
         _zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
     }    
@@ -53,8 +57,9 @@ class Complication extends WatchUi.Drawable {
         var x = origin.x;
         var y = origin.y;
 
-        var start = new Point(x - 50, y);
-        var end = new Point(x + 50, y);
+        var barHalfWidth = dc.getWidth() / 5;
+        var start = new Point(x - barHalfWidth, y);
+        var end = new Point(x + barHalfWidth, y);
         var step = (end.x - start.x) / 5;
 
         // Draw line
@@ -114,8 +119,9 @@ class Complication extends WatchUi.Drawable {
         var x = origin.x;
         var y = origin.y;
 
-        var start = new Point(x - 40, y);
-        var end = new Point(x + 40, y);
+        var barHalfWidth = Math.round(dc.getWidth() / 5.65);
+        var start = new Point(x - barHalfWidth - 2, y);
+        var end = new Point(x + barHalfWidth - 2, y);
         var step = (end.x - start.x) / weatherData.forecasts.size();
 
         var forecasts = weatherData.forecasts as Array<Forecast>;
@@ -138,7 +144,7 @@ class Complication extends WatchUi.Drawable {
 
         // Draw current temperature
         dc.setColor(Colors.foregroundColor, Graphics.COLOR_TRANSPARENT); 
-        dc.drawText(x, y + 19, Graphics.FONT_TINY, weatherData.currentTemperature.toString() + unit, 
+        dc.drawText(x, y + dc.getHeight() / 11, Graphics.FONT_TINY, weatherData.currentTemperature.toString() + unit, 
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );        
 

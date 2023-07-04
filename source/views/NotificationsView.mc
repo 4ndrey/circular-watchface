@@ -6,6 +6,7 @@ class NotificationsView extends WatchUi.Drawable {
 
     var origin;
     var _notificationCount;
+    var isVisible;
 
     function initialize(params) {
         Drawable.initialize(params);
@@ -20,7 +21,7 @@ class NotificationsView extends WatchUi.Drawable {
     function draw(dc as Dc) as Void {
         if (!isVisible) { return; }
 
-        dc.setPenWidth(12);
+        dc.setPenWidth(dc.getHeight() / 20);
         dc.setColor(Colors.foregroundColor, Colors.backgroundColor);
         dc.drawCircle(origin.x, origin.y - 3, 5);
         dc.setColor(Colors.backgroundColor, Graphics.COLOR_TRANSPARENT);
