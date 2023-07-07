@@ -1,31 +1,33 @@
+import Toybox.Application;
 import Toybox.ActivityMonitor;
 import Toybox.UserProfile;
 import Toybox.Time;
+import Toybox.System;
 
 class CaloriesProvider {
+    private static var _baseKcal = 0;
+    private static var _goal = Application.Properties.getValue("ActiveCaloriesGoal");
 
-    private var _goal = Application.Properties.getValue("CaloriesGoal");
+    hidden function getBaseKcal() {
+        if (_baseKcal == 0) {
+            var profile = UserProfile.getProfile();
+            if (profile.gender == null || profile.weight == null || profile.height == null || profile.birthYear == null) {
+                return 0;
+            }
+            var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
+            var age = today.year - profile.birthYear;
 
-    hidden function getBmrBasedGoal() {
-        var profile = UserProfile.getProfile();
-        if (profile.gender == null || profile.weight == null || profile.height == null || profile.birthYear == null) {
-            return null;
+            // Mifflin-St.Jeor Formula (1990)
+            var baseKcal = 0;
+            if (profile.gender == UserProfile.GENDER_FEMALE) {
+                baseKcal = (9.99 * profile.weight / 1000.0) + (6.25 * profile.height) - (4.92 * age) - 161.0;           // base kcal woman        
+            } else {
+                baseKcal = (9.99 * profile.weight / 1000.0) + (6.25 * profile.height) - (4.92 * age) + 5.0;             // base kcal men
+            }
+            baseKcal += (baseKcal * 0.21385);
+            _baseKcal = baseKcal;            
         }
-        var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
-        var age = today.year - profile.birthYear;
-        var bmr = 0;
-        if (profile.gender == UserProfile.GENDER_FEMALE) {
-            bmr = 655 + 9.6 * profile.weight / 1000.0 + 1.8 * profile.height - 4.7 * age;
-        } else {
-            bmr = 66.47 + 13.7 * profile.weight / 1000.0 + 5 * profile.height - 6.8 * age;
-        }
-        var activity = profile.activityClass;
-        if (activity == null) {
-            activity = 37.5;
-        }
-        var goal = bmr * (1 + activity / 100.0);
-        Application.Properties.setValue("CaloriesGoal", goal.toLong());
-        return goal;
+        return _baseKcal;
     }
 
     function getCaloriesBurned() {
@@ -36,13 +38,14 @@ class CaloriesProvider {
         return calories;
     }
 
+    function getActiveCalories() {
+        var kcalPerMinute = getBaseKcal() / 1440; // base kcal per minute
+        var clockTime = System.getClockTime();
+        var activeKcal = (getCaloriesBurned() - (kcalPerMinute * (clockTime.hour * 60.0 + clockTime.min))).toNumber();
+        return activeKcal < 0 ? 0 : activeKcal;
+    }
+
     function getCaloriesGoal() {
-        if (_goal == null || _goal == 0) {
-            _goal = getBmrBasedGoal();
-        }
-        if (_goal == null) {
-            return 0;
-        }
         return _goal;
     }
 }

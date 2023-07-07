@@ -33,7 +33,7 @@ class DataProvider {
 
         // Calories
         if (Application.Properties.getValue("CaloriesSegment")) {
-            var caloriesSegment = new Segment(ACTIVITY_TYPE_CALORIES, normalize(_caloriesProvider.getCaloriesBurned(), _caloriesProvider.getCaloriesGoal()));
+            var caloriesSegment = new Segment(ACTIVITY_TYPE_CALORIES, normalize(_caloriesProvider.getActiveCalories(), _caloriesProvider.getCaloriesGoal()));
             segments.add(caloriesSegment);
         }
 

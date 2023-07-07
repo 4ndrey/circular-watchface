@@ -55,18 +55,22 @@ class ActivityRing extends WatchUi.Drawable {
             dc.fillCircle(mx, my, 2);
         }
 
-        // Draw active segment arc
-        dc.setColor(segment.color(), Colors.foregroundColor);
-        dc.drawArc(radius, radius, radius - penWidth / 2, Graphics.ARC_COUNTER_CLOCKWISE, mid, end);
+        var x = 0;
+        var y = 0;
+        if ((mid - end).abs() > 1) {
+            // Draw active segment arc
+            dc.setColor(segment.color(), Colors.foregroundColor);
+            dc.drawArc(radius, radius, radius - penWidth / 2, Graphics.ARC_COUNTER_CLOCKWISE, mid, end);
+        } 
 
         // Add rounding to arc
-        var x = radius + Math.cos(midAngle) * (radius - penWidth / 2);
-        var y = radius - Math.sin(midAngle) * (radius - penWidth / 2);
+        x = radius + Math.cos(midAngle) * (radius - penWidth / 2);
+        y = radius - Math.sin(midAngle) * (radius - penWidth / 2);
         dc.fillCircle(x, y, penWidth / 2 + 3);
 
         x = radius + Math.cos(endAngle) * (radius - penWidth / 2);
         y = radius - Math.sin(endAngle) * (radius - penWidth / 2);
-        dc.fillCircle(x, y, penWidth / 2);
+        dc.fillCircle(x, y, penWidth / 2);        
 
         // Draw segment icon
         var iconAngle = (mid + 1) * toPi;

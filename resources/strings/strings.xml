@@ -12,8 +12,8 @@
     <string id="BatteryIndicatorTitle">Show remaining battery</string>
     <string id="FloorsSegmentTitle">Show climbed floors</string>
     <string id="ActiveMinutesSegmentTitle">Show active minutes</string>
-    <string id="CaloriesSegmentTitle">Show burned calories</string>
-    <string id="CaloriesGoalTitle">Calories goal</string>
+    <string id="CaloriesSegmentTitle">Show active calories</string>
+    <string id="CaloriesGoalTitle">Active calories goal</string>
     <string id="DynamicComplicationTitle">Complication mode</string>
     <string id="WeatherOnly">Only weather</string>
     <string id="HeartRateOnly">Only heart rate</string>
