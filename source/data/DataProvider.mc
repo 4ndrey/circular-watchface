@@ -94,11 +94,24 @@ class DataProvider {
     }    
 
     function getDate() {
-        var today = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
+        var today = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);        
+        var dateMapping = {
+            "d" => today.day_of_week,
+            "D" => today.day.toString(),
+            "M" => today.month.toString()
+        };        
         var dateFormat = Application.Properties.getValue("DateFormat");
-        var result = stringReplace(dateFormat, "d", today.day_of_week);
-        result = stringReplace(result, "D", today.day.toString());
-        result = stringReplace(result, "M", today.month.toString());
+        var chars = dateFormat.toCharArray();
+        var result = "";
+        for (var i = 0; i < chars.size(); i++) {
+            var char = chars[i].toString();
+            var s = dateMapping.get(char);
+            if (s != null) {
+                result += s;
+            } else {
+                result += char;
+            }
+        }
         return result;
     }
 
