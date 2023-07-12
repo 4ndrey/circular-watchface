@@ -28,10 +28,6 @@ class Complication extends WatchUi.Drawable {
 
     function initialize(params) {
         Drawable.initialize(params);
-
-        // if (penWidth == 0) {
-        //     penWidth = System.getDeviceSettings().screenHeight / 30;
-        // }        
     
         _zones = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC);
     }    
