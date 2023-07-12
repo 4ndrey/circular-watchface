@@ -4,6 +4,7 @@ using Toybox.System;
 using Toybox.Application;
 
 const _clearReminderKey = "clear_reminder";
+const _activeMinutesKey = "active_minutes";
 
 class SettingsView extends WatchUi.Menu2 {
 
@@ -17,7 +18,16 @@ class SettingsView extends WatchUi.Menu2 {
                 _clearReminderKey,
                 {}
             )
-        );     
+        );
+
+        Menu2.addItem(
+            new MenuItem(
+                "Toggle active minutes",
+                null,
+                _activeMinutesKey,
+                {}
+            )
+        );        
 	}
 }
 
@@ -30,6 +40,10 @@ class SettingsDelegate extends WatchUi.Menu2InputDelegate {
         if (item.getId().equals(_clearReminderKey)) {
             Application.Properties.setValue("Notes", null);
             onBack();
+        } else if (item.getId().equals(_activeMinutesKey)) {
+            var toggle = Application.Properties.getValue("ActiveMinutesSegment");
+            Application.Properties.setValue("ActiveMinutesSegment", !toggle);
+            onBack();            
         }
     }
 
