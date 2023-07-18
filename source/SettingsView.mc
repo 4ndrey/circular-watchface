@@ -22,8 +22,8 @@ class SettingsView extends WatchUi.Menu2 {
 
         Menu2.addItem(
             new MenuItem(
-                "Toggle active minutes",
-                null,
+                "Toggle",
+                "Active minutes",
                 _activeMinutesKey,
                 {}
             )

@@ -22,14 +22,14 @@ class NotificationsView extends WatchUi.Drawable {
         if (!isVisible) { return; }
 
         dc.setPenWidth(dc.getHeight() / 20);
-        dc.setColor(_notificationCount == null ? Graphics.COLOR_DK_RED : Colors.foregroundColor, Colors.backgroundColor);
+        dc.setColor(_notificationCount == null ? Graphics.COLOR_ORANGE : Colors.foregroundColor, Colors.backgroundColor);
         dc.drawCircle(origin.x, origin.y - 3, 5);
         dc.setColor(Colors.backgroundColor, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             origin.x,
             origin.y - 4,
-            _notificationCount == null ? Fonts.iconsFont : Graphics.FONT_SYSTEM_XTINY,
-            _notificationCount == null ? "B" : _notificationCount.toString(),
+            Graphics.FONT_SYSTEM_XTINY,
+            _notificationCount == null ? "!" : _notificationCount.toString(),
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );        
     }
