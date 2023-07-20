@@ -39,7 +39,7 @@
         </setting>
 
         <setting propertyKey="@Properties.ActiveCaloriesGoal" title="@Strings.CaloriesGoalTitle">
-            <settingConfig type="numeric" min="1" max="9000"/>
+            <settingConfig type="numeric" min="200" max="3000"/>
         </setting>
 
         <setting propertyKey="@Properties.BatteryIndicator" title="@Strings.BatteryIndicatorTitle">

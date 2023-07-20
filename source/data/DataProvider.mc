@@ -169,7 +169,7 @@ class DataProvider {
     hidden function normalize(current, goal) {
         if (current == null || goal == null || goal == 0) { return 0; }
         var ratio = current.toFloat() / goal;
-        return ratio > 1 ? 1.0 : ratio;
+        return ratio;
     }
 
     // Create a method to get the SensorHistoryIterator object

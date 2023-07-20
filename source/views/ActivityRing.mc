@@ -33,7 +33,8 @@ class ActivityRing extends WatchUi.Drawable {
         var tiles = segments as Array<Segment>;
         var start = -270;
         for (var i = tiles.size() - 1; i >= 0; i--) {
-            var mid = start + (1.0 - tiles[i].value) * segmentSize;
+            var value = tiles[i].value > 1 ? 1.0 : tiles[i].value;
+            var mid = start + (1.0 - value) * segmentSize;
             var end = start + segmentSize;
             _drawSegment(dc, start, mid, end, tiles[i] as Segment);
             start = end;
@@ -78,6 +79,17 @@ class ActivityRing extends WatchUi.Drawable {
         y = radius - Math.sin(iconAngle) * (radius - penWidth / 2);
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT); 
         dc.drawText(x, y, Fonts.iconsFont, segment.icon(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+
+        // Draw label
+        if (segment.value >= 2) {
+            iconAngle = (mid + 11) * toPi;
+            x = radius + Math.cos(iconAngle) * (radius - penWidth / 2 - 1);
+            y = radius - Math.sin(iconAngle) * (radius - penWidth / 2 - 1);
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(x, y, 
+                Graphics.FONT_SYSTEM_XTINY, "x" + segment.value.format("%.0f"), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+            );
+        }
     }
 
 }
