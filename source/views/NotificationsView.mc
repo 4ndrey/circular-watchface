@@ -21,15 +21,17 @@ class NotificationsView extends WatchUi.Drawable {
     function draw(dc as Dc) as Void {
         if (!isVisible) { return; }
 
-        dc.setPenWidth(dc.getHeight() / 20);
-        dc.setColor(Colors.foregroundColor, Colors.backgroundColor);
-        dc.drawCircle(origin.x, origin.y - 3, 5);
+        if (_notificationCount != null) {
+            dc.setPenWidth(dc.getHeight() / 20);
+            dc.setColor(Colors.foregroundColor, Colors.backgroundColor);
+            dc.drawCircle(origin.x, origin.y - 3, 5);
+        }
         dc.setColor(_notificationCount == null ? Graphics.COLOR_DK_RED : Colors.backgroundColor, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             origin.x,
             origin.y - 4,
-            Graphics.FONT_SYSTEM_XTINY,
-            _notificationCount == null ? "!" : _notificationCount.toString(),
+            _notificationCount == null ? Graphics.FONT_SYSTEM_TINY : Graphics.FONT_SYSTEM_XTINY,
+            _notificationCount == null ? "?" : _notificationCount.toString(),
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );        
     }
