@@ -4,20 +4,24 @@ import Toybox.Math;
 class Segment {
     var activityType;
     var value;
+    var label;
     var isValid;
 
     (:debug)
-    function initialize(_activityType, _value) {
+    function initialize(_activityType, _value, goal, specialLabel) {
         activityType = _activityType;
         value = Math.rand() % 100 / 100.0;
+        label = getLabel(_value, value, specialLabel);
         isValid = value >= 0.01;
     }
 
     (:release)
-    function initialize(_activityType, _value) {
+    function initialize(_activityType, _value, goal, specialLabel) {
         activityType = _activityType;
-        value = _value < 0.01 ? 0.01 : _value;
-        isValid = _value >= 0.01;
+        var ratio = normalize(_value, goal);
+        value = ratio < 0.01 ? 0.01 : ratio;
+        isValid = ratio >= 0.01;
+        label = getLabel(_value, ratio, specialLabel);
     }
 
     function color() {
@@ -72,4 +76,28 @@ class Segment {
                 return "?";
         }
     }
+
+    hidden function normalize(current, goal) {
+        if (current == null || goal == null || goal == 0) { return 0; }
+        var ratio = current.toFloat() / goal;
+        return ratio;
+    }    
+
+    hidden function getLabel(value, ratio, special) {
+        var kind = Application.Properties.getValue("SegmentsLabels");
+        if (kind == 2) {
+            return null;
+        } else if (kind == 0 && ratio >= 2) {
+            return "x" + ratio.format("%.0f");
+        } else if (kind == 1 && ratio > 0.12) {
+            if (special != null) {
+                return special;
+            } else if (value >= 1000) {
+                return (value / 1000).format("%.0f") + "k";
+            } else {
+                return value.format("%.0f");
+            }
+        }
+        return null;
+    }    
 }

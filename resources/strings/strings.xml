@@ -22,4 +22,7 @@
     <string id="SegmentsDescription">Visible segment indicators</string>
     <string id="MainSection">Base Settings</string>
     <string id="TogglesSection">Additional Toggles</string>
+    <string id="SegmentsLabels">Segments Labels</string>
+    <string id="ShowArchivementsOnly">Show only archivements</string>
+    <string id="ShowAlways">Always show values</string>
 </strings>

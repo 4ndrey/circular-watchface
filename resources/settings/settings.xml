@@ -22,6 +22,14 @@
             <settingConfig type="alphaNumeric" maxLength="18"/>
         </setting>
 
+        <setting propertyKey="@Properties.SegmentsLabels" title="@Strings.SegmentsLabels">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ShowArchivementsOnly</listEntry>
+                <listEntry value="1">@Strings.ShowAlways</listEntry>
+                <listEntry value="2">@Strings.Off</listEntry>
+            </settingConfig>
+        </setting>        
+
     <!-- </group> -->
 
     <!-- <group id="Segments" title="@Strings.Segments" description="@Strings.SegmentsDescription"> -->

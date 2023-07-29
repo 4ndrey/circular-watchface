@@ -16,34 +16,37 @@ class DataProvider {
         var segments = [];
 
         // Steps
-        var stepsSegment = new Segment(ACTIVITY_TYPE_STEPS, normalize(activityInfo.steps, activityInfo.stepGoal));
+        var stepsSegment = new Segment(ACTIVITY_TYPE_STEPS, activityInfo.steps, activityInfo.stepGoal, null);
         segments.add(stepsSegment);
 
         // Floors
         if (Application.Properties.getValue("FloorsSegment")) {
-            var floorsSegment = new Segment(ACTIVITY_TYPE_FLOORS, normalize(activityInfo.floorsClimbed, activityInfo.floorsClimbedGoal));
+            var floorsSegment = new Segment(ACTIVITY_TYPE_FLOORS, activityInfo.floorsClimbed, activityInfo.floorsClimbedGoal, null);
             segments.add(floorsSegment);
         }
 
         // Active Minutes
         if (Application.Properties.getValue("ActiveMinutesSegment")) {
-            var activeMinutesSegment = new Segment(ACTIVITY_TYPE_ACTIVE_MINUTES, normalize(activityInfo.activeMinutesWeek.total, activityInfo.activeMinutesWeekGoal));
+            var activeMinutesSegment = new Segment(ACTIVITY_TYPE_ACTIVE_MINUTES, activityInfo.activeMinutesWeek.total, activityInfo.activeMinutesWeekGoal, null);
             segments.add(activeMinutesSegment);
         }
 
         // Calories
         if (Application.Properties.getValue("CaloriesSegment")) {
-            var caloriesSegment = new Segment(ACTIVITY_TYPE_CALORIES, normalize(_caloriesProvider.getActiveCalories(), _caloriesProvider.getCaloriesGoal()));
+            var caloriesSegment = new Segment(ACTIVITY_TYPE_CALORIES, _caloriesProvider.getActiveCalories(), _caloriesProvider.getCaloriesGoal(), null);
             segments.add(caloriesSegment);
         }
 
         // Body Battery
-        var energySegment = new Segment(ACTIVITY_TYPE_ENERGY, normalize(getBodyBattery(), 100));
+        var energySegment = new Segment(ACTIVITY_TYPE_ENERGY, getBodyBattery(), 100, null);
         segments.add(energySegment);
 
         // Device Battery
         if (Application.Properties.getValue("BatteryIndicator")) {
-            var batterySegment = new Segment(ACTIVITY_TYPE_BATTERY, normalize(System.getSystemStats().battery, 100));
+            var batterySegment = new Segment(ACTIVITY_TYPE_BATTERY, 
+                System.getSystemStats().battery, 100, 
+                System.getSystemStats().batteryInDays.format("%.0f") + "d"
+            );
             segments.add(batterySegment);
         }
 
@@ -164,12 +167,6 @@ class DataProvider {
         } else {
             return null;
         }
-    }
-
-    hidden function normalize(current, goal) {
-        if (current == null || goal == null || goal == 0) { return 0; }
-        var ratio = current.toFloat() / goal;
-        return ratio;
     }
 
     // Create a method to get the SensorHistoryIterator object

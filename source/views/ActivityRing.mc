@@ -6,7 +6,7 @@ import Toybox.Lang;
 
 class ActivityRing extends WatchUi.Drawable {
 
-    private var penWidth = 20;
+    private var penWidth;
     private static const toPi = Math.PI / 180;
 
     private var radius;
@@ -16,7 +16,7 @@ class ActivityRing extends WatchUi.Drawable {
     function initialize(params) {
         Drawable.initialize(params);
         radius = System.getDeviceSettings().screenHeight / 2;
-        penWidth = System.getDeviceSettings().screenHeight / 12;
+        penWidth = System.getDeviceSettings().screenHeight / 12 + 3;
     }
 
     function setSegments(_segments as Array<Segment>) {
@@ -81,13 +81,13 @@ class ActivityRing extends WatchUi.Drawable {
         dc.drawText(x, y, Fonts.iconsFont, segment.icon(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 
         // Draw label
-        if (segment.value >= 2) {
-            iconAngle = (mid + 11) * toPi;
-            x = radius + Math.cos(iconAngle) * (radius - penWidth / 2 - 1);
-            y = radius - Math.sin(iconAngle) * (radius - penWidth / 2 - 1);
+        if (segment.label != null) {
+            iconAngle = (mid + 12.5) * toPi;
+            x = radius + Math.cos(iconAngle) * (radius - penWidth / 2 - 0.5);
+            y = radius - Math.sin(iconAngle) * (radius - penWidth / 2 - 0.5);
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
             dc.drawText(x, y, 
-                Graphics.FONT_SYSTEM_XTINY, "x" + segment.value.format("%.0f"), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+                Graphics.FONT_SYSTEM_XTINY, segment.label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
             );
         }
     }
