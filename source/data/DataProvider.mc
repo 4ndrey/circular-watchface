@@ -43,9 +43,15 @@ class DataProvider {
 
         // Device Battery
         if (Application.Properties.getValue("BatteryIndicator")) {
+            var batteryLabel = "";
+            if (Toybox.System.Stats has :batteryInDays) {
+                batteryLabel = System.getSystemStats().batteryInDays.format("%.0f") + "d";
+            } else {
+                batteryLabel = System.getSystemStats().battery.format("%.0f");
+            }
             var batterySegment = new Segment(ACTIVITY_TYPE_BATTERY, 
                 System.getSystemStats().battery, 100, 
-                System.getSystemStats().batteryInDays.format("%.0f") + "d"
+                batteryLabel
             );
             segments.add(batterySegment);
         }
