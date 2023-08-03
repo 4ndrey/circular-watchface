@@ -38,8 +38,10 @@ class DataProvider {
         }
 
         // Body Battery
-        var energySegment = new Segment(ACTIVITY_TYPE_ENERGY, getBodyBattery(), 100, null);
-        segments.add(energySegment);
+        if (Toybox.SensorHistory has :getBodyBatteryHistory) {
+            var energySegment = new Segment(ACTIVITY_TYPE_ENERGY, getBodyBattery(), 100, null);
+            segments.add(energySegment);
+        }
 
         // Device Battery
         if (Application.Properties.getValue("BatteryIndicator")) {
