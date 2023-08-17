@@ -98,7 +98,7 @@ class ActivityRing extends WatchUi.Drawable {
             // Draw seconds
             dc.setColor(Colors.foregroundColor, Colors.backgroundColor);
             dc.setPenWidth(4);
-            var secondsAngle = -seconds * 6.0;
+            var secondsAngle = -seconds * 6 + 90;
             dc.drawArc(radius, radius, radius - 1, Graphics.ARC_CLOCKWISE, secondsAngle + 2.5, secondsAngle - 2.5);
         }
 

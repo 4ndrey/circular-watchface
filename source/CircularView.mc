@@ -9,7 +9,7 @@ class CircularView extends WatchUi.WatchFace {
     private var _layout;
 
     private var needsPartialUpdate = false;
-    private var isSleepMode = false;
+    private var isSleepMode = true;
 
     function initialize() {
         WatchFace.initialize();
