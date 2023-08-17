@@ -9,6 +9,7 @@ class CircularView extends WatchUi.WatchFace {
     private var _layout;
 
     private var needsPartialUpdate = false;
+    private var isSleepMode = false;
 
     function initialize() {
         WatchFace.initialize();
@@ -56,6 +57,7 @@ class CircularView extends WatchUi.WatchFace {
         
         var activityRing = View.findDrawableById("ActivityRing") as ActivityRing;
         activityRing.setSegments(_dataProvider.getSegments());
+        activityRing.seconds = isSleepMode ? null : _dataProvider.getSeconds();
 
         var hoursView = View.findDrawableById("Hours") as Label;
         hoursView.text = hours;
@@ -108,10 +110,14 @@ class CircularView extends WatchUi.WatchFace {
 
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() as Void {
+        isSleepMode = false;
+        Toybox.WatchUi.requestUpdate();
     }
 
     // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() as Void {
+        isSleepMode = true;
+        Toybox.WatchUi.requestUpdate();
     }
 
 }

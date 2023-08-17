@@ -12,6 +12,8 @@ class ActivityRing extends WatchUi.Drawable {
     private var radius;
     private var segmentSize = 90.0;
     private var segments;
+    
+    var seconds;
 
     function initialize(params) {
         Drawable.initialize(params);
@@ -45,6 +47,7 @@ class ActivityRing extends WatchUi.Drawable {
         var midAngle = mid * toPi;
         var endAngle = end * toPi;
 
+        dc.setAntiAlias(true);
         dc.setPenWidth(penWidth + 1);
         dc.setColor(segment.color(), Colors.foregroundColor);
 
@@ -90,6 +93,16 @@ class ActivityRing extends WatchUi.Drawable {
                 Graphics.FONT_SYSTEM_XTINY, segment.label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
             );
         }
+
+        if (seconds != null) {
+            // Draw seconds
+            dc.setColor(Colors.foregroundColor, Colors.backgroundColor);
+            dc.setPenWidth(4);
+            var secondsAngle = -seconds * 6.0;
+            dc.drawArc(radius, radius, radius - 1, Graphics.ARC_CLOCKWISE, secondsAngle + 2.5, secondsAngle - 2.5);
+        }
+
+        dc.setAntiAlias(false);
     }
 
 }
