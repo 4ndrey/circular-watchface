@@ -1,9 +1,9 @@
 <layout id="WatchFace">
     <drawable class="Background"/>
+    <drawable id="ActivityRing" class="ActivityRing"/>    
     <drawable id="Hours" class="Label"/>
     <drawable id="Minutes" class="Label"/>
     <drawable id="Date" class="Label"/>
     <drawable id="Notifications" class="NotificationsView"/>
     <drawable id="Complication" class="Complication"/>
-    <drawable id="ActivityRing" class="ActivityRing"/>    
 </layout>

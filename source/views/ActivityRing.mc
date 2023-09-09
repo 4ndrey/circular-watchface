@@ -12,6 +12,7 @@ class ActivityRing extends WatchUi.Drawable {
     private var radius;
     private var segmentSize = 90.0;
     private var segments;
+    private var hasAA;
     
     var seconds;
 
@@ -19,6 +20,7 @@ class ActivityRing extends WatchUi.Drawable {
         Drawable.initialize(params);
         radius = System.getDeviceSettings().screenHeight / 2;
         penWidth = System.getDeviceSettings().screenHeight / 12 + 3;
+        hasAA = Toybox.Graphics.Dc has :setAntiAlias;
     }
 
     function setSegments(_segments as Array<Segment>) {
@@ -47,7 +49,9 @@ class ActivityRing extends WatchUi.Drawable {
         var midAngle = mid * toPi;
         var endAngle = end * toPi;
 
-        dc.setAntiAlias(true);
+        if (hasAA) {
+            dc.setAntiAlias(true);
+        }
         dc.setPenWidth(penWidth + 1);
         dc.setColor(segment.color(), Colors.foregroundColor);
 
@@ -102,7 +106,9 @@ class ActivityRing extends WatchUi.Drawable {
             dc.drawArc(radius, radius, radius - 1, Graphics.ARC_CLOCKWISE, secondsAngle + 2.5, secondsAngle - 2.5);
         }
 
-        dc.setAntiAlias(false);
+        if (hasAA) {
+            dc.setAntiAlias(false);
+        }
     }
 
 }
