@@ -26,7 +26,7 @@ class NotificationsView extends WatchUi.Drawable {
             dc.setColor(Colors.foregroundColor, Colors.backgroundColor);
             dc.drawCircle(origin.x, origin.y - 3, 5);
         }
-        dc.setColor(_notificationCount == null ? Graphics.COLOR_DK_RED : Colors.backgroundColor, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Colors.backgroundColor, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             origin.x,
             origin.y - 4,
