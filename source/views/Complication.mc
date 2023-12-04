@@ -139,13 +139,13 @@ class Complication extends WatchUi.Drawable {
         dc.fillCircle(start.x - 3, start.y - 1, penWidth / 2);
 
         // Draw current temperature
-        dc.setColor(Colors.foregroundColor, Graphics.COLOR_TRANSPARENT); 
+        dc.setColor(Colors.foregroundColor, Graphics.COLOR_TRANSPARENT);
         dc.drawText(x, y + dc.getHeight() / 11, Graphics.FONT_TINY, weatherData.currentTemperature.toString() + unit, 
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );        
 
         // Draw min and max temperature
-        dc.setColor(Colors.foregroundColorAlt, Colors.backgroundColor); 
+        dc.setColor(Colors.foregroundColorAlt, Graphics.COLOR_TRANSPARENT);
         dc.drawText(start.x - 12, y - 2, Graphics.FONT_XTINY, weatherData.minTemperature.toString(), 
             Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER
         );
