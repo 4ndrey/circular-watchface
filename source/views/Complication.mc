@@ -80,9 +80,9 @@ class Complication extends WatchUi.Drawable {
         dc.setColor(Colors.foregroundColor, Graphics.COLOR_TRANSPARENT);
         dc.fillCircle(value, y - 1, penWidth / 2 + 1);
 
-        // Draw current temperature
+        // Draw current HR rate
         dc.setColor(Colors.foregroundColor, Graphics.COLOR_TRANSPARENT); 
-        dc.drawText(x + 10, y + 19, Graphics.FONT_TINY, heartRateData.toString(), 
+        dc.drawText(x + 10, y + 19, Graphics.FONT_TINY, heartRateData.format("%.0f"),
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
         // Icon
@@ -140,16 +140,16 @@ class Complication extends WatchUi.Drawable {
 
         // Draw current temperature
         dc.setColor(Colors.foregroundColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(x, y + dc.getHeight() / 11, Graphics.FONT_TINY, weatherData.currentTemperature.toString() + unit, 
+        dc.drawText(x, y + dc.getHeight() / 11, Graphics.FONT_TINY, weatherData.currentTemperature.format("%.0f") + unit, 
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );        
 
         // Draw min and max temperature
         dc.setColor(Colors.foregroundColorAlt, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(start.x - 12, y - 2, Graphics.FONT_XTINY, weatherData.minTemperature.toString(), 
+        dc.drawText(start.x - 12, y - 2, Graphics.FONT_XTINY, weatherData.minTemperature.format("%.0f"), 
             Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER
         );
-        dc.drawText(end.x + 12, y - 2, Graphics.FONT_XTINY, weatherData.maxTemperature.toString(), 
+        dc.drawText(end.x + 12, y - 2, Graphics.FONT_XTINY, weatherData.maxTemperature.format("%.0f"), 
             Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
